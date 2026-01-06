@@ -1,0 +1,602 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/health-check": {
+      "get": {
+        "operationId": "AppController_getHealthCheck",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Health check",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NoResponseDataDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["App"]
+      }
+    },
+    "/": {
+      "get": {
+        "operationId": "AppController_getRoot",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Welcome to Neurachat API",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NoResponseDataDto"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["App"]
+      }
+    },
+    "/auth/register": {
+      "post": {
+        "description": "Register a new user",
+        "operationId": "AuthController_register",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "User registered successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NoResponseDataDto"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "User with a locked account",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExceptionDto"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "User with the same email already exists",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExceptionDto"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Register user",
+        "tags": ["Auth Controller"]
+      }
+    },
+    "/auth/confirm-email/{token}": {
+      "get": {
+        "description": "Confirm user email using token",
+        "operationId": "AuthController_confirmEmail",
+        "parameters": [
+          {
+            "name": "token",
+            "required": true,
+            "in": "path",
+            "description": "Token to confirm email",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Email verified successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NoResponseDataDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid or expired token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExceptionDto"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Confirm email",
+        "tags": ["Auth Controller"]
+      }
+    },
+    "/auth/login": {
+      "post": {
+        "description": "Login user and return access and refresh tokens",
+        "operationId": "AuthController_login",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "User logged in successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoginResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid or expired token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExceptionDto"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "User with a locked account",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExceptionDto"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Login user",
+        "tags": ["Auth Controller"]
+      }
+    },
+    "/auth/refresh-token": {
+      "post": {
+        "description": "Refresh access and refresh tokens using refresh token",
+        "operationId": "AuthController_refreshToken",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "Tokens refreshed successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoginResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid or expired token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExceptionDto"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Refresh tokens",
+        "tags": ["Auth Controller"]
+      }
+    },
+    "/auth/forgot-password": {
+      "post": {
+        "description": "Send password reset link to user email",
+        "operationId": "AuthController_forgotPassword",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ForgotPasswordRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Password reset link sent successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NoResponseDataDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "User not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExceptionDto"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Forgot password",
+        "tags": ["Auth Controller"]
+      }
+    },
+    "/auth/reset-password": {
+      "post": {
+        "description": "Reset user password using token",
+        "operationId": "AuthController_resetPassword",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResetPasswordRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Password reset successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NoResponseDataDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid or expired token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExceptionDto"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Reset password",
+        "tags": ["Auth Controller"]
+      }
+    },
+    "/auth/logout": {
+      "post": {
+        "operationId": "AuthController_logout",
+        "parameters": [],
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "tags": ["Auth Controller"]
+      }
+    },
+    "/utils/username/{username}": {
+      "get": {
+        "description": "Check if the username is available",
+        "operationId": "UtilsController_checkUsernameUniqueness",
+        "parameters": [
+          {
+            "name": "username",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Username is available",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NoResponseDataDto"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "Username is taken",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExceptionDto"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Check username uniqueness",
+        "tags": ["Utils Controller"]
+      }
+    }
+  },
+  "info": {
+    "title": "Chat app",
+    "description": "",
+    "version": "1.0.0",
+    "contact": {}
+  },
+  "tags": [],
+  "servers": [
+    {
+      "url": "/",
+      "description": "Chat app API"
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "bearer": {
+        "scheme": "bearer",
+        "bearerFormat": "JWT",
+        "type": "http",
+        "in": "header",
+        "name": "Authorization",
+        "description": "Enter your Bearer token"
+      }
+    },
+    "schemas": {
+      "NoResponseDataDto": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "example": "success",
+            "description": "Response status",
+            "enum": ["success"]
+          },
+          "message": {
+            "type": "string",
+            "example": "OTP resent successfully",
+            "description": "Response message"
+          },
+          "timestamp": {
+            "type": "string",
+            "example": "2024-01-01T00:00:00.000Z",
+            "description": "Response timestamp"
+          }
+        },
+        "required": ["status", "message", "timestamp"]
+      },
+      "RegisterRequest": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "example": "user@example.com",
+            "description": "User email"
+          },
+          "password": {
+            "type": "string",
+            "example": "pa@$W0rD",
+            "description": "Password for the user account"
+          },
+          "username": {
+            "type": "string",
+            "example": "username123",
+            "description": "User username"
+          }
+        },
+        "required": ["email", "password", "username"]
+      },
+      "ExceptionPayloadDto": {
+        "type": "object",
+        "properties": {
+          "messages": {
+            "description": "Error messages",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": ["messages"]
+      },
+      "ExceptionDto": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "example": "error",
+            "description": "Response status",
+            "enum": ["error"]
+          },
+          "message": {
+            "type": "string",
+            "example": "Bad Request Exception",
+            "description": "Response message"
+          },
+          "data": {
+            "description": "Response data containing error messages",
+            "example": {
+              "messages": ["A sample error", "Lorem ipsum error"]
+            },
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ExceptionPayloadDto"
+              }
+            ]
+          },
+          "timestamp": {
+            "type": "string",
+            "example": "2024-01-01T00:00:00.000Z",
+            "description": "Response timestamp"
+          }
+        },
+        "required": ["status", "message", "timestamp"]
+      },
+      "LoginRequest": {
+        "type": "object",
+        "properties": {
+          "usernameOrEmail": {
+            "type": "string",
+            "example": "RandomUsernameOrEmail",
+            "description": "Username or email of the user being authenticated"
+          },
+          "password": {
+            "type": "string",
+            "example": "RandomPassword",
+            "description": "Password of the user being authenticated"
+          }
+        },
+        "required": ["usernameOrEmail", "password"]
+      },
+      "UserResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "example": 1,
+            "description": "User id"
+          },
+          "email": {
+            "type": "string",
+            "example": "user@example.com",
+            "description": "User email"
+          },
+          "username": {
+            "type": "string",
+            "example": "username123",
+            "description": "User username"
+          },
+          "createdAt": {
+            "type": "string",
+            "example": "2024-01-01T00:00:00.000Z",
+            "description": "User creation time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "example": "2024-01-01T01:00:00.000Z",
+            "description": "Last update time"
+          },
+          "avatarUrl": {
+            "type": "string",
+            "example": "https://example.com/avatar.png",
+            "description": "Avatar URL",
+            "nullable": true
+          },
+          "status": {
+            "type": "string",
+            "example": "verified",
+            "enum": ["verified", "unverified", "locked"],
+            "description": "Account status"
+          }
+        },
+        "required": [
+          "id",
+          "email",
+          "username",
+          "createdAt",
+          "updatedAt",
+          "status"
+        ]
+      },
+      "TokensResponse": {
+        "type": "object",
+        "properties": {
+          "accessToken": {
+            "type": "string",
+            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+            "description": "JWT access token"
+          }
+        },
+        "required": ["accessToken"]
+      },
+      "LoginResponse": {
+        "type": "object",
+        "properties": {
+          "user": {
+            "$ref": "#/components/schemas/UserResponse"
+          },
+          "tokens": {
+            "$ref": "#/components/schemas/TokensResponse"
+          }
+        },
+        "required": ["user", "tokens"]
+      },
+      "ForgotPasswordRequest": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "example": "johndoe@example.com",
+            "description": "Email address of the user being authenticated"
+          }
+        },
+        "required": ["email"]
+      },
+      "ResetPasswordRequest": {
+        "type": "object",
+        "properties": {
+          "password": {
+            "type": "string",
+            "example": "pa@$W0rD",
+            "description": "Password for the user account"
+          },
+          "confirmPassword": {
+            "type": "string",
+            "example": "pa@$W0rD",
+            "description": "Password confirmation"
+          },
+          "email": {
+            "type": "string",
+            "example": "johndoe@example.com",
+            "description": "Email address of the user being authenticated"
+          },
+          "token": {
+            "type": "string",
+            "example": "random token",
+            "description": "Reset token sent to the user's email"
+          }
+        },
+        "required": ["password", "confirmPassword", "email", "token"]
+      }
+    }
+  },
+  "security": [
+    {
+      "bearer": []
+    }
+  ],
+  "externalDocs": {
+    "description": "OpenAPI specification",
+    "url": "/docs/swagger"
+  }
+}
