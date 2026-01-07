@@ -600,18 +600,13 @@
             "example": "pa@$W0rD",
             "description": "Password confirmation"
           },
-          "email": {
-            "type": "string",
-            "example": "johndoe@example.com",
-            "description": "Email address of the user being authenticated"
-          },
           "token": {
             "type": "string",
             "example": "random token",
             "description": "Reset token sent to the user's email"
           }
         },
-        "required": ["password", "confirmPassword", "email", "token"]
+        "required": ["password", "confirmPassword", "token"]
       }
     }
   },

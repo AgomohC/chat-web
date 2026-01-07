@@ -198,12 +198,6 @@ export type ResetPasswordRequest = {
    */
   confirmPassword: string;
   /**
-   * Email address of the user being authenticated
-   *
-   * @example johndoe@example.com
-   */
-  email: string;
-  /**
    * Reset token sent to the user's email
    *
    * @example random token
