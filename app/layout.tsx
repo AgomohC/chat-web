@@ -28,9 +28,9 @@ export default function RootLayout({
     <html lang="en">
       <ReactQueryClientProvider>
         <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+          className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-50`}
         >
-          <Toaster richColors />
+          <Toaster richColors position="top-center" />
           {children}
         </body>
       </ReactQueryClientProvider>
