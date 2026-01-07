@@ -1,4 +1,5 @@
-import React, { ComponentProps, useState } from "react";
+"use client";
+import { ComponentProps, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Eye, EyeOff } from "lucide-react";
