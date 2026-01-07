@@ -148,9 +148,31 @@ export type TokensResponse = {
   accessToken: string;
 };
 
-export type LoginResponse = {
+export type LoginResponsePayload = {
   user: UserResponse;
   tokens: TokensResponse;
+};
+
+export type LoginResponse = {
+  data: LoginResponsePayload;
+  /**
+   * Response status
+   *
+   * @example success
+   */
+  status: "success";
+  /**
+   * Response message
+   *
+   * @example Login successful
+   */
+  message: string;
+  /**
+   * Response timestamp
+   *
+   * @example 2024-01-01T00:00:00.000Z
+   */
+  timestamp: string;
 };
 
 export type ForgotPasswordRequest = {

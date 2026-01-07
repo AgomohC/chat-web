@@ -539,7 +539,7 @@
         },
         "required": ["accessToken"]
       },
-      "LoginResponse": {
+      "LoginResponsePayload": {
         "type": "object",
         "properties": {
           "user": {
@@ -550,6 +550,31 @@
           }
         },
         "required": ["user", "tokens"]
+      },
+      "LoginResponse": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/LoginResponsePayload"
+          },
+          "status": {
+            "type": "string",
+            "example": "success",
+            "description": "Response status",
+            "enum": ["success"]
+          },
+          "message": {
+            "type": "string",
+            "example": "Login successful",
+            "description": "Response message"
+          },
+          "timestamp": {
+            "type": "string",
+            "example": "2024-01-01T00:00:00.000Z",
+            "description": "Response timestamp"
+          }
+        },
+        "required": ["data", "status", "message", "timestamp"]
       },
       "ForgotPasswordRequest": {
         "type": "object",
