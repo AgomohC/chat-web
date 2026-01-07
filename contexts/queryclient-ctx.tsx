@@ -19,7 +19,6 @@ export const ReactQueryClientProvider = ({
             gcTime: 1000 * 60 * 60 * 4,
             refetchOnReconnect: true,
             refetchOnWindowFocus: EnvVars.environment !== "development",
-            retry: 2,
           },
         },
       }),
