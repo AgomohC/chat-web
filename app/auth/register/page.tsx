@@ -6,7 +6,6 @@ export default function RegistrationPage() {
   return (
     <>
       <AuthHeader title="Register" subtitle="Create an account to continue" />
-
       <RegisterForm />
     </>
   );
