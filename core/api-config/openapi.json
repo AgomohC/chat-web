@@ -346,6 +346,52 @@
         "summary": "Check username uniqueness",
         "tags": ["Utils Controller"]
       }
+    },
+    "/user": {
+      "get": {
+        "description": "Get current user profile",
+        "operationId": "UserController_getCurrentUser",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "User fetched successfully"
+          }
+        },
+        "summary": "Get current user",
+        "tags": ["User Controller"]
+      },
+      "put": {
+        "operationId": "UserController_updateUserProfile",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateUserRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": ["User Controller"]
+      }
+    },
+    "/user/password": {
+      "patch": {
+        "operationId": "UserController_changeUserPassword",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": ["User Controller"]
+      }
     }
   },
   "info": {
@@ -607,6 +653,21 @@
           }
         },
         "required": ["password", "confirmPassword", "token"]
+      },
+      "UpdateUserRequest": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "example": "username123",
+            "description": "User username"
+          },
+          "avatar": {
+            "type": "string",
+            "format": "binary",
+            "description": "Avatar image file"
+          }
+        }
       }
     }
   },

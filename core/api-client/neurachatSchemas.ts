@@ -204,3 +204,18 @@ export type ResetPasswordRequest = {
    */
   token: string;
 };
+
+export type UpdateUserRequest = {
+  /**
+   * User username
+   *
+   * @example username123
+   */
+  username?: string;
+  /**
+   * Avatar image file
+   *
+   * @format binary
+   */
+  avatar?: Blob;
+};

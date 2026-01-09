@@ -789,6 +789,206 @@ export const useUtilsControllerCheckUsernameUniqueness = <
   });
 };
 
+export type UserControllerGetCurrentUserError = Fetcher.ErrorWrapper<undefined>;
+
+export type UserControllerGetCurrentUserVariables =
+  NeurachatContext["fetcherOptions"];
+
+/**
+ * Get current user profile
+ */
+export const fetchUserControllerGetCurrentUser = (
+  variables: UserControllerGetCurrentUserVariables,
+  signal?: AbortSignal,
+) =>
+  neurachatFetch<
+    undefined,
+    UserControllerGetCurrentUserError,
+    undefined,
+    {},
+    {},
+    {}
+  >({ url: "/user", method: "get", ...variables, signal });
+
+/**
+ * Get current user profile
+ */
+export function userControllerGetCurrentUserQuery(
+  variables: UserControllerGetCurrentUserVariables,
+): {
+  queryKey: reactQuery.QueryKey;
+  queryFn: (options: QueryFnOptions) => Promise<undefined>;
+};
+
+export function userControllerGetCurrentUserQuery(
+  variables: UserControllerGetCurrentUserVariables | reactQuery.SkipToken,
+): {
+  queryKey: reactQuery.QueryKey;
+  queryFn:
+    | ((options: QueryFnOptions) => Promise<undefined>)
+    | reactQuery.SkipToken;
+};
+
+export function userControllerGetCurrentUserQuery(
+  variables: UserControllerGetCurrentUserVariables | reactQuery.SkipToken,
+) {
+  return {
+    queryKey: queryKeyFn({
+      path: "/user",
+      operationId: "userControllerGetCurrentUser",
+      variables,
+    }),
+    queryFn:
+      variables === reactQuery.skipToken
+        ? reactQuery.skipToken
+        : ({ signal }: QueryFnOptions) =>
+            fetchUserControllerGetCurrentUser(variables, signal),
+  };
+}
+
+/**
+ * Get current user profile
+ */
+export const useSuspenseUserControllerGetCurrentUser = <TData = undefined>(
+  variables: UserControllerGetCurrentUserVariables,
+  options?: Omit<
+    reactQuery.UseQueryOptions<
+      undefined,
+      UserControllerGetCurrentUserError,
+      TData
+    >,
+    "queryKey" | "queryFn" | "initialData"
+  >,
+) => {
+  const { queryOptions, fetcherOptions } = useNeurachatContext(options);
+  return reactQuery.useSuspenseQuery<
+    undefined,
+    UserControllerGetCurrentUserError,
+    TData
+  >({
+    ...userControllerGetCurrentUserQuery(deepMerge(fetcherOptions, variables)),
+    ...options,
+    ...queryOptions,
+  });
+};
+
+/**
+ * Get current user profile
+ */
+export const useUserControllerGetCurrentUser = <TData = undefined>(
+  variables: UserControllerGetCurrentUserVariables | reactQuery.SkipToken,
+  options?: Omit<
+    reactQuery.UseQueryOptions<
+      undefined,
+      UserControllerGetCurrentUserError,
+      TData
+    >,
+    "queryKey" | "queryFn" | "initialData"
+  >,
+) => {
+  const { queryOptions, fetcherOptions } = useNeurachatContext(options);
+  return reactQuery.useQuery<
+    undefined,
+    UserControllerGetCurrentUserError,
+    TData
+  >({
+    ...userControllerGetCurrentUserQuery(
+      variables === reactQuery.skipToken
+        ? variables
+        : deepMerge(fetcherOptions, variables),
+    ),
+    ...options,
+    ...queryOptions,
+  });
+};
+
+export type UserControllerUpdateUserProfileError =
+  Fetcher.ErrorWrapper<undefined>;
+
+export type UserControllerUpdateUserProfileVariables = {
+  body?: Schemas.UpdateUserRequest;
+} & NeurachatContext["fetcherOptions"];
+
+export const fetchUserControllerUpdateUserProfile = (
+  variables: UserControllerUpdateUserProfileVariables,
+  signal?: AbortSignal,
+) =>
+  neurachatFetch<
+    undefined,
+    UserControllerUpdateUserProfileError,
+    Schemas.UpdateUserRequest,
+    {},
+    {},
+    {}
+  >({ url: "/user", method: "put", ...variables, signal });
+
+export const useUserControllerUpdateUserProfile = (
+  options?: Omit<
+    reactQuery.UseMutationOptions<
+      undefined,
+      UserControllerUpdateUserProfileError,
+      UserControllerUpdateUserProfileVariables
+    >,
+    "mutationFn"
+  >,
+) => {
+  const { fetcherOptions } = useNeurachatContext();
+  return reactQuery.useMutation<
+    undefined,
+    UserControllerUpdateUserProfileError,
+    UserControllerUpdateUserProfileVariables
+  >({
+    mutationFn: (variables: UserControllerUpdateUserProfileVariables) =>
+      fetchUserControllerUpdateUserProfile(
+        deepMerge(fetcherOptions, variables),
+      ),
+    ...options,
+  });
+};
+
+export type UserControllerChangeUserPasswordError =
+  Fetcher.ErrorWrapper<undefined>;
+
+export type UserControllerChangeUserPasswordVariables =
+  NeurachatContext["fetcherOptions"];
+
+export const fetchUserControllerChangeUserPassword = (
+  variables: UserControllerChangeUserPasswordVariables,
+  signal?: AbortSignal,
+) =>
+  neurachatFetch<
+    undefined,
+    UserControllerChangeUserPasswordError,
+    undefined,
+    {},
+    {},
+    {}
+  >({ url: "/user/password", method: "patch", ...variables, signal });
+
+export const useUserControllerChangeUserPassword = (
+  options?: Omit<
+    reactQuery.UseMutationOptions<
+      undefined,
+      UserControllerChangeUserPasswordError,
+      UserControllerChangeUserPasswordVariables
+    >,
+    "mutationFn"
+  >,
+) => {
+  const { fetcherOptions } = useNeurachatContext();
+  return reactQuery.useMutation<
+    undefined,
+    UserControllerChangeUserPasswordError,
+    UserControllerChangeUserPasswordVariables
+  >({
+    mutationFn: (variables: UserControllerChangeUserPasswordVariables) =>
+      fetchUserControllerChangeUserPassword(
+        deepMerge(fetcherOptions, variables),
+      ),
+    ...options,
+  });
+};
+
 export type QueryOperation =
   | {
       path: "/health-check";
@@ -811,4 +1011,9 @@ export type QueryOperation =
       variables:
         | UtilsControllerCheckUsernameUniquenessVariables
         | reactQuery.SkipToken;
+    }
+  | {
+      path: "/user";
+      operationId: "userControllerGetCurrentUser";
+      variables: UserControllerGetCurrentUserVariables | reactQuery.SkipToken;
     };
