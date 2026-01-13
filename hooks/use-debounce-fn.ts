@@ -13,24 +13,24 @@ export function useDebounceFn<Fn extends (...args: unknown[]) => unknown>(
   options?: DebounceOptions,
 ) {
   const fnRef = useLatest(fn);
-  const [debouncedFn, setDebouncedFn] =
-    useState<DebouncedFunction<(...args: Parameters<Fn>) => unknown>>();
 
-  useIsomorphicLayoutEffect(() => {
-    setDebouncedFn(
+  const debouncedFn = useMemo(
+    () =>
       debounce(
-        (...args: Parameters<Fn>) => fnRef.current(...args),
+        // eslint-disable-next-line react-hooks/refs
+        (...args: Parameters<Fn>) => {
+          return fnRef.current(...args);
+        },
         debounceMs ?? 1000,
         options,
       ),
-    );
-  }, [debounceMs, options]);
-
-  useUnmount(() => debouncedFn?.cancel());
+    [],
+  );
+  useUnmount(() => debouncedFn.cancel());
 
   return {
     run: debouncedFn,
-    cancel: debouncedFn?.cancel,
-    flush: debouncedFn?.flush,
+    cancel: debouncedFn.cancel,
+    flush: debouncedFn.flush,
   };
 }

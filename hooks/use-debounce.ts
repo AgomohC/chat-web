@@ -18,7 +18,7 @@ export function useDebounce<T>(
   );
 
   useEffect(() => {
-    return run?.();
+    return run();
   }, [value, run]);
 
   return debouncedValue;
