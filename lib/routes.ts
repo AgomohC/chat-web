@@ -7,4 +7,5 @@ export const routes = {
     register: "/auth/register",
     forgotPassword: "/auth/forgot-password",
   },
+  home: "/",
 };
