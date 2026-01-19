@@ -2,7 +2,7 @@ import z from "zod";
 import { emailSchema, passwordSchema, usernameSchema } from "./reusable-schema";
 
 export const loginSchema = z.object({
-  usernameOrEmail: z.xor([usernameSchema, emailSchema]),
+  usernameOrEmail: z.union([usernameSchema, emailSchema]),
   password: passwordSchema,
 });
 
