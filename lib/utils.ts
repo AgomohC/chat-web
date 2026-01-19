@@ -12,3 +12,12 @@ export const getBearerToken = () => {
   if (!token) return undefined;
   return `Bearer ${token}`;
 };
+
+export const safeArray = <T>(arr: unknown): T[] => {
+  if (Array.isArray(arr)) return arr as T[];
+  return [];
+};
+export const safeString = (str: unknown, fallback = ""): string => {
+  if (typeof str === "string") return str;
+  return fallback;
+};

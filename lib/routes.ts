@@ -7,5 +7,9 @@ export const routes = {
     register: "/auth/register",
     forgotPassword: "/auth/forgot-password",
   },
-  home: "/",
+  allChats: "/",
+  newGroup: new URLSearchParams("new-group=true"),
+  newContact: new URLSearchParams("new-contact=true"),
+  contacts: new URLSearchParams("contacts=true"),
+  archivedChats: "/archive",
 };
