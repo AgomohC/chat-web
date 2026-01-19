@@ -9,9 +9,39 @@ import {
 } from "../ui/form";
 import PasswordInput from "../reusables/password-input";
 import { Input } from "../ui/input";
+import { useUtilsControllerCheckUsernameUniqueness } from "@/core/api-client/neurachatComponents";
+import { useEffect } from "react";
+import { getApiErrorMessage } from "@/lib/get-error-message";
+import { Spinner } from "../ui/spinner";
+import { useDebounce } from "@/hooks/use-debounce";
 
 export const RegisterFormView = () => {
   const registerForm = useFormContext<RegisterRequestPayload>();
+
+  const debouncedUsername = useDebounce(registerForm.watch("username"), 500);
+
+  const usernameUnique = useUtilsControllerCheckUsernameUniqueness(
+    {
+      pathParams: {
+        username: debouncedUsername,
+      },
+    },
+    {
+      enabled: Boolean(debouncedUsername),
+      retry: 1,
+    },
+  );
+
+  useEffect(() => {
+    if (usernameUnique.error) {
+      registerForm.setError("username", {
+        type: "custom",
+        message: getApiErrorMessage(usernameUnique.error),
+      });
+    } else {
+      registerForm.clearErrors("username");
+    }
+  }, [registerForm, debouncedUsername, usernameUnique.error]);
   return (
     <>
       <FormField
@@ -33,9 +63,15 @@ export const RegisterFormView = () => {
         name="username"
         render={({ field }) => (
           <FormItem className="flex flex-col gap-1">
-            <FormLabel className="leading-6">Username</FormLabel>
+            <div className="flex justify-between w-full items-center">
+              <FormLabel className="leading-6">Username</FormLabel>
+
+              {usernameUnique.isLoading ? (
+                <Spinner className="text-primary text-xs" />
+              ) : null}
+            </div>
             <FormControl>
-              <Input {...field} placeholder="What should we call you?" />
+              <Input {...field} placeholder="Enter your username" />
             </FormControl>
             <FormMessage className="text-xs" />
           </FormItem>
