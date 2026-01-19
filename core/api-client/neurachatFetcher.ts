@@ -1,6 +1,11 @@
-import { EnvVars } from "@/lib/constants";
+import { COOKIE_STORAGE_KEYS, EnvVars } from "@/lib/constants";
 import type { NeurachatContext } from "./neurachatContext";
 import axios from "axios";
+import { getBearerToken } from "@/lib/utils";
+import { deleteCookie, setCookie } from "cookies-next";
+import { LoginResponse } from "./neurachatSchemas";
+import { routes } from "@/lib/routes";
+import { logger } from "@/lib/logger";
 const baseUrl = EnvVars.apiBaseUrl;
 
 export type ErrorWrapper<TError> =
@@ -21,6 +26,60 @@ export type NeurachatFetcherOptions<
   pathParams?: TPathParams;
   signal?: AbortSignal;
 } & NeurachatContext["fetcherOptions"];
+
+const axiosClient = axios.create({
+  timeout: 1000 * 30,
+});
+
+axiosClient.interceptors.request.use(
+  (config) => {
+    const token = getBearerToken();
+
+    if (token) {
+      config.headers["Authorization"] = token;
+    }
+
+    if (!token && "Authorization" in config.headers) {
+      delete config.headers["Authorization"];
+    }
+    return config;
+  },
+  (error) => Promise.reject(error),
+);
+
+axiosClient.interceptors.response.use(
+  (response) => response,
+  async (error) => {
+    const originalRequest = error.config;
+
+    if (error.response?.status === 401 && !originalRequest._retry) {
+      originalRequest._retry = true;
+
+      try {
+        const refreshUrl = `${baseUrl}${resolveUrl("/auth/refresh-token", {}, {})}`;
+        const res = await axios.post<LoginResponse>(
+          refreshUrl,
+          {},
+          { withCredentials: true },
+        );
+        const newToken = res.data.data.tokens.accessToken;
+
+        setCookie(COOKIE_STORAGE_KEYS.ACCESS_TOKEN, newToken);
+        axiosClient.defaults.headers.common["Authorization"] =
+          "Bearer " + newToken;
+
+        return axiosClient(originalRequest);
+      } catch (err) {
+        logger.error("Token refresh failed", err);
+        deleteCookie(COOKIE_STORAGE_KEYS.ACCESS_TOKEN);
+        delete axiosClient.defaults.headers.common["Authorization"];
+        window.location.href = routes.auth.login;
+        return Promise.reject(err);
+      }
+    }
+    return Promise.reject(error);
+  },
+);
 
 export async function neurachatFetch<
   TData,
@@ -50,10 +109,6 @@ export async function neurachatFetch<
       ...headers,
     };
 
-    const authorizationHeadIsPresent = "Authorization" in requestHeaders;
-    // if (authStore.getState().payload.user && !authorizationHeadIsPresent) {
-    // 			requestHeaders["Authorization"] = getBearerToken() || ""
-    // 		}
     if (
       requestHeaders["Content-Type"]
         ?.toLowerCase()
@@ -64,7 +119,7 @@ export async function neurachatFetch<
 
     const resolvedUrl = `${baseUrl}${resolveUrl(url, queryParams, pathParams)}`;
 
-    const response = await axios.request<TData>({
+    const response = await axiosClient.request<TData>({
       url: resolvedUrl,
       method: method.toUpperCase(),
       data: body
@@ -75,6 +130,7 @@ export async function neurachatFetch<
       headers: requestHeaders,
       signal,
     });
+    console.log(response);
 
     return response.data as TData;
   } catch (e: unknown) {

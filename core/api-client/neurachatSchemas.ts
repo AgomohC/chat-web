@@ -205,6 +205,28 @@ export type ResetPasswordRequest = {
   token: string;
 };
 
+export type GetUserResponse = {
+  data: UserResponse;
+  /**
+   * Response status
+   *
+   * @example success
+   */
+  status: "success";
+  /**
+   * Response message
+   *
+   * @example Login successful
+   */
+  message: string;
+  /**
+   * Response timestamp
+   *
+   * @example 2024-01-01T00:00:00.000Z
+   */
+  timestamp: string;
+};
+
 export type UpdateUserRequest = {
   /**
    * User username

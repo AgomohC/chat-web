@@ -802,7 +802,7 @@ export const fetchUserControllerGetCurrentUser = (
   signal?: AbortSignal,
 ) =>
   neurachatFetch<
-    undefined,
+    Schemas.GetUserResponse,
     UserControllerGetCurrentUserError,
     undefined,
     {},
@@ -817,7 +817,7 @@ export function userControllerGetCurrentUserQuery(
   variables: UserControllerGetCurrentUserVariables,
 ): {
   queryKey: reactQuery.QueryKey;
-  queryFn: (options: QueryFnOptions) => Promise<undefined>;
+  queryFn: (options: QueryFnOptions) => Promise<Schemas.GetUserResponse>;
 };
 
 export function userControllerGetCurrentUserQuery(
@@ -825,7 +825,7 @@ export function userControllerGetCurrentUserQuery(
 ): {
   queryKey: reactQuery.QueryKey;
   queryFn:
-    | ((options: QueryFnOptions) => Promise<undefined>)
+    | ((options: QueryFnOptions) => Promise<Schemas.GetUserResponse>)
     | reactQuery.SkipToken;
 };
 
@@ -849,11 +849,13 @@ export function userControllerGetCurrentUserQuery(
 /**
  * Get current user profile
  */
-export const useSuspenseUserControllerGetCurrentUser = <TData = undefined>(
+export const useSuspenseUserControllerGetCurrentUser = <
+  TData = Schemas.GetUserResponse,
+>(
   variables: UserControllerGetCurrentUserVariables,
   options?: Omit<
     reactQuery.UseQueryOptions<
-      undefined,
+      Schemas.GetUserResponse,
       UserControllerGetCurrentUserError,
       TData
     >,
@@ -862,7 +864,7 @@ export const useSuspenseUserControllerGetCurrentUser = <TData = undefined>(
 ) => {
   const { queryOptions, fetcherOptions } = useNeurachatContext(options);
   return reactQuery.useSuspenseQuery<
-    undefined,
+    Schemas.GetUserResponse,
     UserControllerGetCurrentUserError,
     TData
   >({
@@ -875,11 +877,13 @@ export const useSuspenseUserControllerGetCurrentUser = <TData = undefined>(
 /**
  * Get current user profile
  */
-export const useUserControllerGetCurrentUser = <TData = undefined>(
+export const useUserControllerGetCurrentUser = <
+  TData = Schemas.GetUserResponse,
+>(
   variables: UserControllerGetCurrentUserVariables | reactQuery.SkipToken,
   options?: Omit<
     reactQuery.UseQueryOptions<
-      undefined,
+      Schemas.GetUserResponse,
       UserControllerGetCurrentUserError,
       TData
     >,
@@ -888,7 +892,7 @@ export const useUserControllerGetCurrentUser = <TData = undefined>(
 ) => {
   const { queryOptions, fetcherOptions } = useNeurachatContext(options);
   return reactQuery.useQuery<
-    undefined,
+    Schemas.GetUserResponse,
     UserControllerGetCurrentUserError,
     TData
   >({
