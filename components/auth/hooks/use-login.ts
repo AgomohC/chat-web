@@ -2,6 +2,7 @@ import { useAuthControllerLogin } from "@/core/api-client/neurachatComponents";
 import { LoginRequest } from "@/core/api-client/neurachatSchemas";
 import { COOKIE_STORAGE_KEYS } from "@/lib/constants";
 import { getApiErrorMessage } from "@/lib/get-error-message";
+import { logger } from "@/lib/logger";
 import { setCookie } from "cookies-next";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
@@ -23,8 +24,7 @@ export const useLogin = () => {
         router.refresh();
       }, 5);
     } catch (error) {
-      console.log(error);
-
+      logger.error(error);
       const errorMessage = getApiErrorMessage(error);
       toast.error(errorMessage);
     }

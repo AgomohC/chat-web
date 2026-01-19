@@ -130,7 +130,6 @@ export async function neurachatFetch<
       headers: requestHeaders,
       signal,
     });
-    console.log(response);
 
     return response.data as TData;
   } catch (e: unknown) {
