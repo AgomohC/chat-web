@@ -5,5 +5,5 @@ export const EnvVars = {
 };
 
 export enum COOKIE_STORAGE_KEYS {
-  ACCESS_TOKEN = "accessToken",
+  ACCESS_TOKEN = "neurachat_access_Token",
 }

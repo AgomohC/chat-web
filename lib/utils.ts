@@ -21,3 +21,11 @@ export const safeString = (str: unknown, fallback = ""): string => {
   if (typeof str === "string") return str;
   return fallback;
 };
+export const generateInitials = (name: string) => {
+  return name
+    .split(" ")
+    .map((word) => word.charAt(0))
+    .join("")
+    .slice(0, 2)
+    .toUpperCase();
+};

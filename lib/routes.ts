@@ -12,4 +12,6 @@ export const routes = {
   newContact: new URLSearchParams("new-contact=true"),
   contacts: new URLSearchParams("contacts=true"),
   archivedChats: "/archive",
+  profile: "/profile",
+  settings: "/settings",
 };
