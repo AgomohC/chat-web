@@ -28,8 +28,8 @@ import { useUserControllerGetCurrentUser } from "@/core/api-client/neurachatComp
 import { generateInitials, safeString } from "@/lib/utils"
 import Link from "next/link"
 import { routes } from "@/lib/routes"
-import { useLogout } from "./auth/hooks/use-logout"
-import { AvatarWithLoader } from "./reusables/avatar-with-loader"
+import { useLogout } from "../auth/hooks/use-logout"
+import { AvatarWithLoader } from "../reusables/avatar-with-loader"
 
 export function NavUser() {
   const { status, data: user } = useUserControllerGetCurrentUser(

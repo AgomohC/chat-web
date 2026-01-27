@@ -1,5 +1,5 @@
 import React from "react"
-import { AppSidebar } from "@/components/app-sidebar"
+import { AppSidebar } from "@/components/sidebars/app-sidebar"
 import {
   Breadcrumb,
   BreadcrumbItem,

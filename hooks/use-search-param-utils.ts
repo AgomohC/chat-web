@@ -19,12 +19,22 @@ export const useSearchParamsUtils = () => {
     [searchParams]
   )
 
+  const removeSearchParam = useCallback(
+    (name: string) => {
+      const params = new URLSearchParams(searchParams.toString())
+      params.delete(name)
+      return params.toString()
+    },
+    [searchParams]
+  )
+
   const getAllSearchParams = useCallback(() => {
     return searchParams.toString()
   }, [searchParams])
   return {
     createQueryString,
     getSearchParam,
+    removeSearchParam,
     getAllSearchParams
   }
 }

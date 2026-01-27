@@ -7,59 +7,59 @@ import {
   SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
-  SidebarMenuItem,
-} from "./ui/sidebar";
-import { Avatar, AvatarImage } from "./ui/avatar";
-import Link from "next/link";
-import { routes } from "@/lib/routes";
+  SidebarMenuItem
+} from "../ui/sidebar"
+import { Avatar, AvatarImage } from "../ui/avatar"
+import Link from "next/link"
+import { routes } from "@/lib/routes"
 import {
   ArchiveX,
   ContactRound,
   MessageCircle,
   UserRound,
-  UsersRound,
-} from "lucide-react";
-import { NavUser } from "./nav-user";
-import { usePathname } from "next/navigation";
-import { useSearchParamsUtils } from "@/hooks/use-search-param-utils";
+  UsersRound
+} from "lucide-react"
+import { NavUser } from "./nav-user"
+import { usePathname } from "next/navigation"
+import { useSearchParamsUtils } from "@/hooks/use-search-param-utils"
 const navItem = [
   {
     title: "New Contact",
     url: routes.newContact,
-    icon: UserRound,
+    icon: UserRound
   },
   {
     title: "New Group",
     url: routes.newGroup,
-    icon: UsersRound,
+    icon: UsersRound
   },
   {
     title: "Chats",
     url: routes.allChats,
-    icon: MessageCircle,
+    icon: MessageCircle
   },
   {
     title: "Contacts",
     url: routes.contacts,
-    icon: ContactRound,
+    icon: ContactRound
   },
   {
     title: "Archived Chats",
     url: routes.archivedChats,
     icon: ArchiveX,
-    hasChildRoutes: true,
-  },
-];
+    hasChildRoutes: true
+  }
+]
 
 export const OuterSideBar = () => {
-  const pathname = usePathname();
+  const pathname = usePathname()
 
-  const { createQueryString } = useSearchParamsUtils();
+  const { createQueryString } = useSearchParamsUtils()
 
   const generateLinkFromSearchParam = (searchParam: URLSearchParams) => {
-    const [key, value] = searchParam.toString().split("=");
-    return pathname + "?" + createQueryString(key, value);
-  };
+    const [key, value] = searchParam.toString().split("=")
+    return pathname + "?" + createQueryString(key, value)
+  }
 
   return (
     <Sidebar
@@ -72,7 +72,7 @@ export const OuterSideBar = () => {
             <SidebarMenuButton size="lg" asChild className="md:h-8 md:p-0">
               <Link href="/">
                 <div className="flex aspect-square size-8 items-center justify-center">
-                  <Avatar className="rounded-none">
+                  <Avatar className="rounded-full">
                     <AvatarImage src="/logos/neurachat-logo.png" alt="logo" />
                   </Avatar>
                 </div>
@@ -92,7 +92,7 @@ export const OuterSideBar = () => {
                 const href =
                   typeof item.url === "string"
                     ? item.url
-                    : generateLinkFromSearchParam(item.url);
+                    : generateLinkFromSearchParam(item.url)
 
                 // If item.url is not a string, it means it is a url search param and those are never active
                 const isActive =
@@ -100,13 +100,13 @@ export const OuterSideBar = () => {
                     ? false
                     : item.hasChildRoutes
                       ? pathname.includes(href)
-                      : pathname === href;
+                      : pathname === href
                 return (
                   <SidebarMenuItem key={item.title}>
                     <SidebarMenuButton
                       tooltip={{
                         children: item.title,
-                        hidden: false,
+                        hidden: false
                       }}
                       isActive={isActive}
                       className="px-2.5 md:px-2"
@@ -118,7 +118,7 @@ export const OuterSideBar = () => {
                       </Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
-                );
+                )
               })}
             </SidebarMenu>
           </SidebarGroupContent>
@@ -128,5 +128,5 @@ export const OuterSideBar = () => {
         <NavUser />
       </SidebarFooter>
     </Sidebar>
-  );
-};
+  )
+}
