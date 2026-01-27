@@ -1,6 +1,6 @@
-import { AuthHeader } from "@/components/auth/auth-header";
-import { LoginForm } from "@/components/auth/login-form";
-import { Metadata } from "next";
+import { AuthHeader } from "@/components/auth/auth-header"
+import { LoginForm } from "@/components/auth/login-form"
+import { Metadata } from "next"
 
 export default function LoginPage() {
   return (
@@ -9,10 +9,10 @@ export default function LoginPage() {
 
       <LoginForm />
     </>
-  );
+  )
 }
 
 export const metadata: Metadata = {
   description: "Login to Neurachat",
-  title: "Login",
-};
+  title: "Login"
+}

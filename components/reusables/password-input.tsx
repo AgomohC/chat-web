@@ -1,18 +1,18 @@
-"use client";
-import { ComponentProps, useState } from "react";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { Eye, EyeOff } from "lucide-react";
+"use client"
+import { ComponentProps, useState } from "react"
+import { Input } from "@/components/ui/input"
+import { Button } from "@/components/ui/button"
+import { Eye, EyeOff } from "lucide-react"
 
 interface PasswordInputProps extends Omit<ComponentProps<"input">, "type"> {
-  name: string;
+  name: string
 }
 export default function PasswordInput({ ...props }: PasswordInputProps) {
-  const [showPassword, setShowPassword] = useState(false);
+  const [showPassword, setShowPassword] = useState(false)
 
   const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
-  };
+    setShowPassword(!showPassword)
+  }
 
   return (
     <div className="w-full max-w-sm">
@@ -37,5 +37,5 @@ export default function PasswordInput({ ...props }: PasswordInputProps) {
         </Button>
       </div>
     </div>
-  );
+  )
 }

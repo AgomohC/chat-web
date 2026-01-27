@@ -1,14 +1,14 @@
-import { Metadata } from "next";
-import AuthLayout from "../layout";
-import { AuthHeader } from "@/components/auth/auth-header";
-import { ResetPasswordForm } from "@/components/auth/reset-password-form";
+import { Metadata } from "next"
+import AuthLayout from "../layout"
+import { AuthHeader } from "@/components/auth/auth-header"
+import { ResetPasswordForm } from "@/components/auth/reset-password-form"
 
 type Props = {
-  searchParams: Promise<{ token: string | undefined }>;
-};
+  searchParams: Promise<{ token: string | undefined }>
+}
 
 export default async function ResetPasswordPage({ searchParams }: Props) {
-  const { token } = await searchParams;
+  const { token } = await searchParams
   if (!token) {
     return (
       <>
@@ -17,7 +17,7 @@ export default async function ResetPasswordPage({ searchParams }: Props) {
           subtitle="Please request a new password reset."
         />
       </>
-    );
+    )
   }
   return (
     <>
@@ -27,9 +27,9 @@ export default async function ResetPasswordPage({ searchParams }: Props) {
       />
       <ResetPasswordForm token={token} />
     </>
-  );
+  )
 }
 export const metadata: Metadata = {
   description: "Complete your password reset process",
-  title: "Reset Password",
-};
+  title: "Reset Password"
+}

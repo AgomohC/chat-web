@@ -1,8 +1,8 @@
-import z from "zod";
-import { emailSchema } from "./reusable-schema";
+import z from "zod"
+import { emailSchema } from "./reusable-schema"
 
 export const forgotPasswordSchema = z.object({
-  email: emailSchema,
-});
+  email: emailSchema
+})
 
-export type forgotPasswordRequestPayload = z.infer<typeof forgotPasswordSchema>;
+export type forgotPasswordRequestPayload = z.infer<typeof forgotPasswordSchema>

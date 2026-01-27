@@ -1,14 +1,14 @@
-"use client";
-import { useSuspenseAuthControllerConfirmEmail } from "@/core/api-client/neurachatComponents";
-import { AuthHeader } from "./auth-header";
-import { RegistrationVerificationSuccess } from "./registration-verification";
+"use client"
+import { useSuspenseAuthControllerConfirmEmail } from "@/core/api-client/neurachatComponents"
+import { AuthHeader } from "./auth-header"
+import { RegistrationVerificationSuccess } from "./registration-verification"
 
 export const VerifyRegistrationBody = ({ token }: { token: string }) => {
   useSuspenseAuthControllerConfirmEmail({
     pathParams: {
-      token,
-    },
-  });
+      token
+    }
+  })
   return (
     <>
       <AuthHeader
@@ -17,5 +17,5 @@ export const VerifyRegistrationBody = ({ token }: { token: string }) => {
       />
       <RegistrationVerificationSuccess />
     </>
-  );
-};
+  )
+}

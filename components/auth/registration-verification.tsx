@@ -1,6 +1,6 @@
-import { routes } from "@/lib/routes";
-import { Loader2 } from "lucide-react";
-import Link from "next/link";
+import { routes } from "@/lib/routes"
+import { Loader2 } from "lucide-react"
+import Link from "next/link"
 
 export const RegistrationVerificationError = () => {
   return (
@@ -75,8 +75,8 @@ export const RegistrationVerificationError = () => {
         </p>
       </div>
     </div>
-  );
-};
+  )
+}
 
 export const RegistrationVerificationSuccess = () => {
   return (
@@ -124,7 +124,7 @@ export const RegistrationVerificationSuccess = () => {
             className="animate-[draw_0.5s_ease-out_0.3s_both]"
             style={{
               strokeDasharray: 50,
-              strokeDashoffset: 50,
+              strokeDashoffset: 50
             }}
           />
 
@@ -183,8 +183,8 @@ export const RegistrationVerificationSuccess = () => {
         </Link>
       </div>
     </div>
-  );
-};
+  )
+}
 
 export const RegistrationVerificationLoader = () => {
   return (
@@ -194,5 +194,5 @@ export const RegistrationVerificationLoader = () => {
       </div>
       <p className="text-xs text-gray-500">This will only take a moment...</p>
     </div>
-  );
-};
+  )
+}

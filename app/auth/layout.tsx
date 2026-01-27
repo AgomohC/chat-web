@@ -1,14 +1,14 @@
-import { routes } from "@/lib/routes";
-import Image from "next/image";
-import Link from "next/link";
-import { ReactNode } from "react";
+import { routes } from "@/lib/routes"
+import Image from "next/image"
+import Link from "next/link"
+import { ReactNode } from "react"
 
 export default function AuthLayout({
-  children,
+  children
 }: {
-  children: ReactNode;
-  title: string;
-  subtitle?: string;
+  children: ReactNode
+  title: string
+  subtitle?: string
 }) {
   return (
     <div className="w-full flex flex-col justify-center items-center p-4 min-h-dvh scroll-smooth gap-8">
@@ -36,5 +36,5 @@ export default function AuthLayout({
         </div>
       </div>
     </div>
-  );
+  )
 }

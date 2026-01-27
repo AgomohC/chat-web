@@ -1,17 +1,17 @@
-"use client";
+"use client"
 import {
   type RegisterRequestPayload,
-  registerSchema,
-} from "@/schema/register-schema";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { type SubmitHandler, useForm } from "react-hook-form";
-import { RegisterFormView } from "./register-form-view";
-import { Button } from "../ui/button";
-import { Form } from "../ui/form";
-import { useRegisterUser } from "./hooks/use-register-user";
-import { Spinner } from "../ui/spinner";
-import { routes } from "@/lib/routes";
-import Link from "next/link";
+  registerSchema
+} from "@/schema/register-schema"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { type SubmitHandler, useForm } from "react-hook-form"
+import { RegisterFormView } from "./register-form-view"
+import { Button } from "../ui/button"
+import { Form } from "../ui/form"
+import { useRegisterUser } from "./hooks/use-register-user"
+import { Spinner } from "../ui/spinner"
+import { routes } from "@/lib/routes"
+import Link from "next/link"
 
 export const RegisterForm = () => {
   const registerForm = useForm<RegisterRequestPayload>({
@@ -20,11 +20,11 @@ export const RegisterForm = () => {
       email: "",
       password: "",
       username: "",
-      confirmPassword: "",
-    },
-  });
+      confirmPassword: ""
+    }
+  })
 
-  const { registerUser, status } = useRegisterUser();
+  const { registerUser, status } = useRegisterUser()
 
   const onSubmit: SubmitHandler<RegisterRequestPayload> = (data) => {
     registerUser(data).then(() => {
@@ -32,10 +32,10 @@ export const RegisterForm = () => {
         email: "",
         password: "",
         username: "",
-        confirmPassword: "",
-      });
-    });
-  };
+        confirmPassword: ""
+      })
+    })
+  }
   return (
     <Form {...registerForm}>
       <form
@@ -60,5 +60,5 @@ export const RegisterForm = () => {
         </div>
       </form>
     </Form>
-  );
-};
+  )
+}

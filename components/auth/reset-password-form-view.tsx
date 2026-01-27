@@ -1,15 +1,15 @@
-import { ResetPasswordRequestPayload } from "@/schema/reset-password-schema";
-import { useFormContext } from "react-hook-form";
+import { ResetPasswordRequestPayload } from "@/schema/reset-password-schema"
+import { useFormContext } from "react-hook-form"
 import {
   FormControl,
   FormField,
   FormItem,
   FormLabel,
-  FormMessage,
-} from "../ui/form";
-import PasswordInput from "../reusables/password-input";
+  FormMessage
+} from "../ui/form"
+import PasswordInput from "../reusables/password-input"
 export const ResetPasswordFormView = () => {
-  const resetPasswordForm = useFormContext<ResetPasswordRequestPayload>();
+  const resetPasswordForm = useFormContext<ResetPasswordRequestPayload>()
   return (
     <>
       <FormField
@@ -39,5 +39,5 @@ export const ResetPasswordFormView = () => {
         )}
       />
     </>
-  );
-};
+  )
+}

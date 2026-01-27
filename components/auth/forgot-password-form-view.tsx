@@ -1,16 +1,16 @@
-import { forgotPasswordRequestPayload } from "@/schema/forgot-password-schema";
-import { useFormContext } from "react-hook-form";
+import { forgotPasswordRequestPayload } from "@/schema/forgot-password-schema"
+import { useFormContext } from "react-hook-form"
 import {
   FormControl,
   FormField,
   FormItem,
   FormLabel,
-  FormMessage,
-} from "../ui/form";
-import { Input } from "../ui/input";
+  FormMessage
+} from "../ui/form"
+import { Input } from "../ui/input"
 
 export const ForgotPasswordFormView = () => {
-  const forgotPasswordForm = useFormContext<forgotPasswordRequestPayload>();
+  const forgotPasswordForm = useFormContext<forgotPasswordRequestPayload>()
   return (
     <>
       <FormField
@@ -27,5 +27,5 @@ export const ForgotPasswordFormView = () => {
         )}
       />
     </>
-  );
-};
+  )
+}

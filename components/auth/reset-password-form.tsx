@@ -1,34 +1,34 @@
-"use client";
+"use client"
 import {
   ResetPasswordRequestPayload,
-  resetPasswordSchema,
-} from "@/schema/reset-password-schema";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { SubmitHandler, useForm } from "react-hook-form";
-import { useResetPassword } from "./hooks/use-reset-password";
-import { ResetPasswordFormView } from "./reset-password-form-view";
-import { Button } from "../ui/button";
-import { Spinner } from "../ui/spinner";
-import { Form } from "../ui/form";
+  resetPasswordSchema
+} from "@/schema/reset-password-schema"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { SubmitHandler, useForm } from "react-hook-form"
+import { useResetPassword } from "./hooks/use-reset-password"
+import { ResetPasswordFormView } from "./reset-password-form-view"
+import { Button } from "../ui/button"
+import { Spinner } from "../ui/spinner"
+import { Form } from "../ui/form"
 
 export const ResetPasswordForm = (props: { token: string }) => {
   const resetPasswordForm = useForm<ResetPasswordRequestPayload>({
     resolver: zodResolver(resetPasswordSchema),
     defaultValues: {
       password: "",
-      confirmPassword: "",
-    },
-  });
+      confirmPassword: ""
+    }
+  })
 
-  const { resetPassword, status } = useResetPassword();
+  const { resetPassword, status } = useResetPassword()
   const onSubmit: SubmitHandler<ResetPasswordRequestPayload> = (data) => {
     resetPassword({ ...data, token: props.token }).then(() => {
       resetPasswordForm.reset({
         password: "",
-        confirmPassword: "",
-      });
-    });
-  };
+        confirmPassword: ""
+      })
+    })
+  }
   return (
     <Form {...resetPasswordForm}>
       <form
@@ -46,5 +46,5 @@ export const ResetPasswordForm = (props: { token: string }) => {
         </Button>
       </form>
     </Form>
-  );
-};
+  )
+}

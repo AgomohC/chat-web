@@ -1,18 +1,18 @@
-"use client";
-import { AuthHeader } from "@/components/auth/auth-header";
-import { RegistrationVerificationError } from "@/components/auth/registration-verification";
-import { logger } from "@/lib/logger";
-import { useEffect } from "react";
+"use client"
+import { AuthHeader } from "@/components/auth/auth-header"
+import { RegistrationVerificationError } from "@/components/auth/registration-verification"
+import { logger } from "@/lib/logger"
+import { useEffect } from "react"
 
 export default function Error({
-  error,
+  error
 }: {
-  error: Error & { digest?: string };
-  reset: () => void;
+  error: Error & { digest?: string }
+  reset: () => void
 }) {
   useEffect(() => {
-    logger.error(error);
-  }, [error]);
+    logger.error(error)
+  }, [error])
 
   return (
     <>
@@ -22,5 +22,5 @@ export default function Error({
       />
       <RegistrationVerificationError />
     </>
-  );
+  )
 }

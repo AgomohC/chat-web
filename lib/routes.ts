@@ -5,7 +5,7 @@ export const routes = {
       `/auth/verify-registration?token=${token}`,
     resetPassword: (token: string) => `/auth/reset-password?token=${token}`,
     register: "/auth/register",
-    forgotPassword: "/auth/forgot-password",
+    forgotPassword: "/auth/forgot-password"
   },
   allChats: "/",
   newGroup: new URLSearchParams("new-group=true"),
@@ -13,5 +13,5 @@ export const routes = {
   contacts: new URLSearchParams("contacts=true"),
   archivedChats: "/archive",
   profile: "/profile",
-  settings: "/settings",
-};
+  settings: "/settings"
+}

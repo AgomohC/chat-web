@@ -1,19 +1,19 @@
-import { LoginRequestPayload } from "@/schema/login-schema";
-import { useFormContext } from "react-hook-form";
+import { LoginRequestPayload } from "@/schema/login-schema"
+import { useFormContext } from "react-hook-form"
 import {
   FormControl,
   FormField,
   FormItem,
   FormLabel,
-  FormMessage,
-} from "../ui/form";
-import PasswordInput from "../reusables/password-input";
-import { Input } from "../ui/input";
-import Link from "next/link";
-import { routes } from "@/lib/routes";
+  FormMessage
+} from "../ui/form"
+import PasswordInput from "../reusables/password-input"
+import { Input } from "../ui/input"
+import Link from "next/link"
+import { routes } from "@/lib/routes"
 
 export const LoginFormView = () => {
-  const loginForm = useFormContext<LoginRequestPayload>();
+  const loginForm = useFormContext<LoginRequestPayload>()
   return (
     <>
       <FormField
@@ -51,5 +51,5 @@ export const LoginFormView = () => {
         )}
       />
     </>
-  );
-};
+  )
+}

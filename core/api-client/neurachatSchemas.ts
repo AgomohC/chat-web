@@ -9,20 +9,20 @@ export type NoResponseDataDto = {
    *
    * @example success
    */
-  status: "success";
+  status: "success"
   /**
    * Response message
    *
    * @example OTP resent successfully
    */
-  message: string;
+  message: string
   /**
    * Response timestamp
    *
    * @example 2024-01-01T00:00:00.000Z
    */
-  timestamp: string;
-};
+  timestamp: string
+}
 
 export type RegisterRequest = {
   /**
@@ -30,27 +30,27 @@ export type RegisterRequest = {
    *
    * @example user@example.com
    */
-  email: string;
+  email: string
   /**
    * Password for the user account
    *
    * @example pa@$W0rD
    */
-  password: string;
+  password: string
   /**
    * User username
    *
    * @example username123
    */
-  username: string;
-};
+  username: string
+}
 
 export type ExceptionPayloadDto = {
   /**
    * Error messages
    */
-  messages: string[];
-};
+  messages: string[]
+}
 
 export type ExceptionDto = {
   /**
@@ -58,26 +58,26 @@ export type ExceptionDto = {
    *
    * @example error
    */
-  status: "error";
+  status: "error"
   /**
    * Response message
    *
    * @example Bad Request Exception
    */
-  message: string;
+  message: string
   /**
    * Response data containing error messages
    *
    * @example {"messages":["A sample error","Lorem ipsum error"]}
    */
-  data?: ExceptionPayloadDto;
+  data?: ExceptionPayloadDto
   /**
    * Response timestamp
    *
    * @example 2024-01-01T00:00:00.000Z
    */
-  timestamp: string;
-};
+  timestamp: string
+}
 
 export type LoginRequest = {
   /**
@@ -85,14 +85,14 @@ export type LoginRequest = {
    *
    * @example RandomUsernameOrEmail
    */
-  usernameOrEmail: string;
+  usernameOrEmail: string
   /**
    * Password of the user being authenticated
    *
    * @example RandomPassword
    */
-  password: string;
-};
+  password: string
+}
 
 export type UserResponse = {
   /**
@@ -100,44 +100,44 @@ export type UserResponse = {
    *
    * @example 1
    */
-  id: number;
+  id: number
   /**
    * User email
    *
    * @example user@example.com
    */
-  email: string;
+  email: string
   /**
    * User username
    *
    * @example username123
    */
-  username: string;
+  username: string
   /**
    * User creation time
    *
    * @example 2024-01-01T00:00:00.000Z
    */
-  createdAt: string;
+  createdAt: string
   /**
    * Last update time
    *
    * @example 2024-01-01T01:00:00.000Z
    */
-  updatedAt: string;
+  updatedAt: string
   /**
    * Avatar URL
    *
    * @example https://example.com/avatar.png
    */
-  avatarUrl?: string | null;
+  avatarUrl?: string | null
   /**
    * Account status
    *
    * @example verified
    */
-  status: "verified" | "unverified" | "locked";
-};
+  status: "verified" | "unverified" | "locked"
+}
 
 export type TokensResponse = {
   /**
@@ -145,35 +145,35 @@ export type TokensResponse = {
    *
    * @example eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
    */
-  accessToken: string;
-};
+  accessToken: string
+}
 
 export type LoginResponsePayload = {
-  user: UserResponse;
-  tokens: TokensResponse;
-};
+  user: UserResponse
+  tokens: TokensResponse
+}
 
 export type LoginResponse = {
-  data: LoginResponsePayload;
+  data: LoginResponsePayload
   /**
    * Response status
    *
    * @example success
    */
-  status: "success";
+  status: "success"
   /**
    * Response message
    *
    * @example Login successful
    */
-  message: string;
+  message: string
   /**
    * Response timestamp
    *
    * @example 2024-01-01T00:00:00.000Z
    */
-  timestamp: string;
-};
+  timestamp: string
+}
 
 export type ForgotPasswordRequest = {
   /**
@@ -181,8 +181,8 @@ export type ForgotPasswordRequest = {
    *
    * @example johndoe@example.com
    */
-  email: string;
-};
+  email: string
+}
 
 export type ResetPasswordRequest = {
   /**
@@ -190,42 +190,42 @@ export type ResetPasswordRequest = {
    *
    * @example pa@$W0rD
    */
-  password: string;
+  password: string
   /**
    * Password confirmation
    *
    * @example pa@$W0rD
    */
-  confirmPassword: string;
+  confirmPassword: string
   /**
    * Reset token sent to the user's email
    *
    * @example random token
    */
-  token: string;
-};
+  token: string
+}
 
 export type GetUserResponse = {
-  data: UserResponse;
+  data: UserResponse
   /**
    * Response status
    *
    * @example success
    */
-  status: "success";
+  status: "success"
   /**
    * Response message
    *
    * @example Login successful
    */
-  message: string;
+  message: string
   /**
    * Response timestamp
    *
    * @example 2024-01-01T00:00:00.000Z
    */
-  timestamp: string;
-};
+  timestamp: string
+}
 
 export type UpdateUserRequest = {
   /**
@@ -233,11 +233,11 @@ export type UpdateUserRequest = {
    *
    * @example username123
    */
-  username?: string;
+  username?: string
   /**
    * Avatar image file
    *
    * @format binary
    */
-  avatar?: Blob;
-};
+  avatar?: Blob
+}

@@ -1,6 +1,6 @@
-import { AuthHeader } from "@/components/auth/auth-header";
-import { ForgotPasswordForm } from "@/components/auth/forgot-password-form";
-import { Metadata } from "next";
+import { AuthHeader } from "@/components/auth/auth-header"
+import { ForgotPasswordForm } from "@/components/auth/forgot-password-form"
+import { Metadata } from "next"
 
 export default function ForgotPasswordPage() {
   return (
@@ -11,10 +11,10 @@ export default function ForgotPasswordPage() {
       />
       <ForgotPasswordForm />
     </>
-  );
+  )
 }
 
 export const metadata: Metadata = {
   description: "Forgot password",
-  title: "Forgot Password",
-};
+  title: "Forgot Password"
+}

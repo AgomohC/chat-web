@@ -1,47 +1,47 @@
-import { type RegisterRequestPayload } from "@/schema/register-schema";
-import { useFormContext } from "react-hook-form";
+import { type RegisterRequestPayload } from "@/schema/register-schema"
+import { useFormContext } from "react-hook-form"
 import {
   FormControl,
   FormField,
   FormItem,
   FormLabel,
-  FormMessage,
-} from "../ui/form";
-import PasswordInput from "../reusables/password-input";
-import { Input } from "../ui/input";
-import { useUtilsControllerCheckUsernameUniqueness } from "@/core/api-client/neurachatComponents";
-import { useEffect } from "react";
-import { getApiErrorMessage } from "@/lib/get-error-message";
-import { Spinner } from "../ui/spinner";
-import { useDebounce } from "@/hooks/use-debounce";
+  FormMessage
+} from "../ui/form"
+import PasswordInput from "../reusables/password-input"
+import { Input } from "../ui/input"
+import { useUtilsControllerCheckUsernameUniqueness } from "@/core/api-client/neurachatComponents"
+import { useEffect } from "react"
+import { getApiErrorMessage } from "@/lib/get-error-message"
+import { Spinner } from "../ui/spinner"
+import { useDebounce } from "@/hooks/use-debounce"
 
 export const RegisterFormView = () => {
-  const registerForm = useFormContext<RegisterRequestPayload>();
+  const registerForm = useFormContext<RegisterRequestPayload>()
 
-  const debouncedUsername = useDebounce(registerForm.watch("username"), 500);
+  const debouncedUsername = useDebounce(registerForm.watch("username"), 500)
 
   const usernameUnique = useUtilsControllerCheckUsernameUniqueness(
     {
       pathParams: {
-        username: debouncedUsername,
-      },
+        username: debouncedUsername
+      }
     },
     {
       enabled: Boolean(debouncedUsername),
-      retry: 1,
-    },
-  );
+      retry: 1
+    }
+  )
 
   useEffect(() => {
     if (usernameUnique.error) {
       registerForm.setError("username", {
         type: "custom",
-        message: getApiErrorMessage(usernameUnique.error),
-      });
+        message: getApiErrorMessage(usernameUnique.error)
+      })
     } else {
-      registerForm.clearErrors("username");
+      registerForm.clearErrors("username")
     }
-  }, [registerForm, debouncedUsername, usernameUnique.error]);
+  }, [registerForm, debouncedUsername, usernameUnique.error])
   return (
     <>
       <FormField
@@ -105,5 +105,5 @@ export const RegisterFormView = () => {
         )}
       />
     </>
-  );
-};
+  )
+}

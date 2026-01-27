@@ -1,28 +1,22 @@
-import React from "react";
-import { AppSidebar } from "@/components/app-sidebar";
+import React from "react"
+import { AppSidebar } from "@/components/app-sidebar"
 import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
-import { Separator } from "@/components/ui/separator";
+  BreadcrumbSeparator
+} from "@/components/ui/breadcrumb"
+import { Separator } from "@/components/ui/separator"
 import {
   SidebarInset,
   SidebarProvider,
-  SidebarTrigger,
-} from "@/components/ui/sidebar";
+  SidebarTrigger
+} from "@/components/ui/sidebar"
 const ChatDashboardLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <SidebarProvider
-      style={
-        {
-          "--sidebar-width": "360px",
-        } as React.CSSProperties
-      }
-    >
+    <SidebarProvider>
       <AppSidebar />
       <SidebarInset>
         <header className="bg-background sticky top-0 flex shrink-0 items-center gap-2 border-b p-4">
@@ -46,7 +40,7 @@ const ChatDashboardLayout = ({ children }: { children: React.ReactNode }) => {
         <div className="flex flex-1 flex-col gap-4 p-4">{children}</div>
       </SidebarInset>
     </SidebarProvider>
-  );
-};
+  )
+}
 
-export default ChatDashboardLayout;
+export default ChatDashboardLayout

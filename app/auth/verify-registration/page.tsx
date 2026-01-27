@@ -1,18 +1,18 @@
-import { AuthHeader } from "@/components/auth/auth-header";
+import { AuthHeader } from "@/components/auth/auth-header"
 import {
   RegistrationVerificationError,
-  RegistrationVerificationLoader,
-} from "@/components/auth/registration-verification";
-import { VerifyRegistrationBody } from "@/components/auth/registration-verification-body";
-import { Metadata } from "next";
-import { Suspense } from "react";
+  RegistrationVerificationLoader
+} from "@/components/auth/registration-verification"
+import { VerifyRegistrationBody } from "@/components/auth/registration-verification-body"
+import { Metadata } from "next"
+import { Suspense } from "react"
 
 type Props = {
-  searchParams: Promise<{ token: string | undefined }>;
-};
+  searchParams: Promise<{ token: string | undefined }>
+}
 
 export default async function VerifyRegistrationPage({ searchParams }: Props) {
-  const { token } = await searchParams;
+  const { token } = await searchParams
 
   if (!token) {
     return (
@@ -23,7 +23,7 @@ export default async function VerifyRegistrationPage({ searchParams }: Props) {
         />
         <RegistrationVerificationError />
       </>
-    );
+    )
   }
   return (
     <Suspense
@@ -39,9 +39,9 @@ export default async function VerifyRegistrationPage({ searchParams }: Props) {
     >
       <VerifyRegistrationBody token={token} />
     </Suspense>
-  );
+  )
 }
 export const metadata: Metadata = {
   description: "Complete your registration process",
-  title: "Verify Registration",
-};
+  title: "Verify Registration"
+}

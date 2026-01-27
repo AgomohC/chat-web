@@ -1,29 +1,29 @@
-"use client";
-import { type LoginRequestPayload, loginSchema } from "@/schema/login-schema";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { SubmitHandler, useForm } from "react-hook-form";
-import { useLogin } from "./hooks/use-login";
-import Link from "next/link";
-import { Button } from "../ui/button";
-import { Spinner } from "../ui/spinner";
-import { routes } from "@/lib/routes";
-import { LoginFormView } from "./login-form-view";
-import { Form } from "../ui/form";
+"use client"
+import { type LoginRequestPayload, loginSchema } from "@/schema/login-schema"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { SubmitHandler, useForm } from "react-hook-form"
+import { useLogin } from "./hooks/use-login"
+import Link from "next/link"
+import { Button } from "../ui/button"
+import { Spinner } from "../ui/spinner"
+import { routes } from "@/lib/routes"
+import { LoginFormView } from "./login-form-view"
+import { Form } from "../ui/form"
 
 export const LoginForm = () => {
   const loginForm = useForm<LoginRequestPayload>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
       usernameOrEmail: "",
-      password: "",
-    },
-  });
+      password: ""
+    }
+  })
 
-  const { login, status } = useLogin();
+  const { login, status } = useLogin()
 
   const onSubmit: SubmitHandler<LoginRequestPayload> = async (data) => {
-    await login(data);
-  };
+    await login(data)
+  }
   return (
     <Form {...loginForm}>
       <form
@@ -48,5 +48,5 @@ export const LoginForm = () => {
         </div>
       </form>
     </Form>
-  );
-};
+  )
+}

@@ -3,29 +3,29 @@
  *
  * @version 1.0.0
  */
-import * as reactQuery from "@tanstack/react-query";
+import * as reactQuery from "@tanstack/react-query"
 import {
   type NeurachatContext,
   useNeurachatContext,
-  queryKeyFn,
-} from "./neurachatContext";
-import { deepMerge } from "./neurachatUtils";
-import type * as Fetcher from "./neurachatFetcher";
-import { neurachatFetch } from "./neurachatFetcher";
-import type * as Schemas from "./neurachatSchemas";
+  queryKeyFn
+} from "./neurachatContext"
+import { deepMerge } from "./neurachatUtils"
+import type * as Fetcher from "./neurachatFetcher"
+import { neurachatFetch } from "./neurachatFetcher"
+import type * as Schemas from "./neurachatSchemas"
 
 type QueryFnOptions = {
-  signal?: AbortController["signal"];
-};
+  signal?: AbortController["signal"]
+}
 
-export type AppControllerGetHealthCheckError = Fetcher.ErrorWrapper<undefined>;
+export type AppControllerGetHealthCheckError = Fetcher.ErrorWrapper<undefined>
 
 export type AppControllerGetHealthCheckVariables =
-  NeurachatContext["fetcherOptions"];
+  NeurachatContext["fetcherOptions"]
 
 export const fetchAppControllerGetHealthCheck = (
   variables: AppControllerGetHealthCheckVariables,
-  signal?: AbortSignal,
+  signal?: AbortSignal
 ) =>
   neurachatFetch<
     Schemas.NoResponseDataDto,
@@ -34,43 +34,43 @@ export const fetchAppControllerGetHealthCheck = (
     {},
     {},
     {}
-  >({ url: "/health-check", method: "get", ...variables, signal });
+  >({ url: "/health-check", method: "get", ...variables, signal })
 
 export function appControllerGetHealthCheckQuery(
-  variables: AppControllerGetHealthCheckVariables,
+  variables: AppControllerGetHealthCheckVariables
 ): {
-  queryKey: reactQuery.QueryKey;
-  queryFn: (options: QueryFnOptions) => Promise<Schemas.NoResponseDataDto>;
-};
+  queryKey: reactQuery.QueryKey
+  queryFn: (options: QueryFnOptions) => Promise<Schemas.NoResponseDataDto>
+}
 
 export function appControllerGetHealthCheckQuery(
-  variables: AppControllerGetHealthCheckVariables | reactQuery.SkipToken,
+  variables: AppControllerGetHealthCheckVariables | reactQuery.SkipToken
 ): {
-  queryKey: reactQuery.QueryKey;
+  queryKey: reactQuery.QueryKey
   queryFn:
     | ((options: QueryFnOptions) => Promise<Schemas.NoResponseDataDto>)
-    | reactQuery.SkipToken;
-};
+    | reactQuery.SkipToken
+}
 
 export function appControllerGetHealthCheckQuery(
-  variables: AppControllerGetHealthCheckVariables | reactQuery.SkipToken,
+  variables: AppControllerGetHealthCheckVariables | reactQuery.SkipToken
 ) {
   return {
     queryKey: queryKeyFn({
       path: "/health-check",
       operationId: "appControllerGetHealthCheck",
-      variables,
+      variables
     }),
     queryFn:
       variables === reactQuery.skipToken
         ? reactQuery.skipToken
         : ({ signal }: QueryFnOptions) =>
-            fetchAppControllerGetHealthCheck(variables, signal),
-  };
+            fetchAppControllerGetHealthCheck(variables, signal)
+  }
 }
 
 export const useSuspenseAppControllerGetHealthCheck = <
-  TData = Schemas.NoResponseDataDto,
+  TData = Schemas.NoResponseDataDto
 >(
   variables: AppControllerGetHealthCheckVariables,
   options?: Omit<
@@ -80,9 +80,9 @@ export const useSuspenseAppControllerGetHealthCheck = <
       TData
     >,
     "queryKey" | "queryFn" | "initialData"
-  >,
+  >
 ) => {
-  const { queryOptions, fetcherOptions } = useNeurachatContext(options);
+  const { queryOptions, fetcherOptions } = useNeurachatContext(options)
   return reactQuery.useSuspenseQuery<
     Schemas.NoResponseDataDto,
     AppControllerGetHealthCheckError,
@@ -90,12 +90,12 @@ export const useSuspenseAppControllerGetHealthCheck = <
   >({
     ...appControllerGetHealthCheckQuery(deepMerge(fetcherOptions, variables)),
     ...options,
-    ...queryOptions,
-  });
-};
+    ...queryOptions
+  })
+}
 
 export const useAppControllerGetHealthCheck = <
-  TData = Schemas.NoResponseDataDto,
+  TData = Schemas.NoResponseDataDto
 >(
   variables: AppControllerGetHealthCheckVariables | reactQuery.SkipToken,
   options?: Omit<
@@ -105,9 +105,9 @@ export const useAppControllerGetHealthCheck = <
       TData
     >,
     "queryKey" | "queryFn" | "initialData"
-  >,
+  >
 ) => {
-  const { queryOptions, fetcherOptions } = useNeurachatContext(options);
+  const { queryOptions, fetcherOptions } = useNeurachatContext(options)
   return reactQuery.useQuery<
     Schemas.NoResponseDataDto,
     AppControllerGetHealthCheckError,
@@ -116,20 +116,20 @@ export const useAppControllerGetHealthCheck = <
     ...appControllerGetHealthCheckQuery(
       variables === reactQuery.skipToken
         ? variables
-        : deepMerge(fetcherOptions, variables),
+        : deepMerge(fetcherOptions, variables)
     ),
     ...options,
-    ...queryOptions,
-  });
-};
+    ...queryOptions
+  })
+}
 
-export type AppControllerGetRootError = Fetcher.ErrorWrapper<undefined>;
+export type AppControllerGetRootError = Fetcher.ErrorWrapper<undefined>
 
-export type AppControllerGetRootVariables = NeurachatContext["fetcherOptions"];
+export type AppControllerGetRootVariables = NeurachatContext["fetcherOptions"]
 
 export const fetchAppControllerGetRoot = (
   variables: AppControllerGetRootVariables,
-  signal?: AbortSignal,
+  signal?: AbortSignal
 ) =>
   neurachatFetch<
     Schemas.NoResponseDataDto,
@@ -138,43 +138,43 @@ export const fetchAppControllerGetRoot = (
     {},
     {},
     {}
-  >({ url: "/", method: "get", ...variables, signal });
+  >({ url: "/", method: "get", ...variables, signal })
 
 export function appControllerGetRootQuery(
-  variables: AppControllerGetRootVariables,
+  variables: AppControllerGetRootVariables
 ): {
-  queryKey: reactQuery.QueryKey;
-  queryFn: (options: QueryFnOptions) => Promise<Schemas.NoResponseDataDto>;
-};
+  queryKey: reactQuery.QueryKey
+  queryFn: (options: QueryFnOptions) => Promise<Schemas.NoResponseDataDto>
+}
 
 export function appControllerGetRootQuery(
-  variables: AppControllerGetRootVariables | reactQuery.SkipToken,
+  variables: AppControllerGetRootVariables | reactQuery.SkipToken
 ): {
-  queryKey: reactQuery.QueryKey;
+  queryKey: reactQuery.QueryKey
   queryFn:
     | ((options: QueryFnOptions) => Promise<Schemas.NoResponseDataDto>)
-    | reactQuery.SkipToken;
-};
+    | reactQuery.SkipToken
+}
 
 export function appControllerGetRootQuery(
-  variables: AppControllerGetRootVariables | reactQuery.SkipToken,
+  variables: AppControllerGetRootVariables | reactQuery.SkipToken
 ) {
   return {
     queryKey: queryKeyFn({
       path: "/",
       operationId: "appControllerGetRoot",
-      variables,
+      variables
     }),
     queryFn:
       variables === reactQuery.skipToken
         ? reactQuery.skipToken
         : ({ signal }: QueryFnOptions) =>
-            fetchAppControllerGetRoot(variables, signal),
-  };
+            fetchAppControllerGetRoot(variables, signal)
+  }
 }
 
 export const useSuspenseAppControllerGetRoot = <
-  TData = Schemas.NoResponseDataDto,
+  TData = Schemas.NoResponseDataDto
 >(
   variables: AppControllerGetRootVariables,
   options?: Omit<
@@ -184,9 +184,9 @@ export const useSuspenseAppControllerGetRoot = <
       TData
     >,
     "queryKey" | "queryFn" | "initialData"
-  >,
+  >
 ) => {
-  const { queryOptions, fetcherOptions } = useNeurachatContext(options);
+  const { queryOptions, fetcherOptions } = useNeurachatContext(options)
   return reactQuery.useSuspenseQuery<
     Schemas.NoResponseDataDto,
     AppControllerGetRootError,
@@ -194,9 +194,9 @@ export const useSuspenseAppControllerGetRoot = <
   >({
     ...appControllerGetRootQuery(deepMerge(fetcherOptions, variables)),
     ...options,
-    ...queryOptions,
-  });
-};
+    ...queryOptions
+  })
+}
 
 export const useAppControllerGetRoot = <TData = Schemas.NoResponseDataDto>(
   variables: AppControllerGetRootVariables | reactQuery.SkipToken,
@@ -207,9 +207,9 @@ export const useAppControllerGetRoot = <TData = Schemas.NoResponseDataDto>(
       TData
     >,
     "queryKey" | "queryFn" | "initialData"
-  >,
+  >
 ) => {
-  const { queryOptions, fetcherOptions } = useNeurachatContext(options);
+  const { queryOptions, fetcherOptions } = useNeurachatContext(options)
   return reactQuery.useQuery<
     Schemas.NoResponseDataDto,
     AppControllerGetRootError,
@@ -218,34 +218,34 @@ export const useAppControllerGetRoot = <TData = Schemas.NoResponseDataDto>(
     ...appControllerGetRootQuery(
       variables === reactQuery.skipToken
         ? variables
-        : deepMerge(fetcherOptions, variables),
+        : deepMerge(fetcherOptions, variables)
     ),
     ...options,
-    ...queryOptions,
-  });
-};
+    ...queryOptions
+  })
+}
 
 export type AuthControllerRegisterError = Fetcher.ErrorWrapper<
   | {
-      status: 403;
-      payload: Schemas.ExceptionDto;
+      status: 403
+      payload: Schemas.ExceptionDto
     }
   | {
-      status: 409;
-      payload: Schemas.ExceptionDto;
+      status: 409
+      payload: Schemas.ExceptionDto
     }
->;
+>
 
 export type AuthControllerRegisterVariables = {
-  body: Schemas.RegisterRequest;
-} & NeurachatContext["fetcherOptions"];
+  body: Schemas.RegisterRequest
+} & NeurachatContext["fetcherOptions"]
 
 /**
  * Register a new user
  */
 export const fetchAuthControllerRegister = (
   variables: AuthControllerRegisterVariables,
-  signal?: AbortSignal,
+  signal?: AbortSignal
 ) =>
   neurachatFetch<
     Schemas.NoResponseDataDto,
@@ -254,7 +254,7 @@ export const fetchAuthControllerRegister = (
     {},
     {},
     {}
-  >({ url: "/auth/register", method: "post", ...variables, signal });
+  >({ url: "/auth/register", method: "post", ...variables, signal })
 
 /**
  * Register a new user
@@ -267,9 +267,9 @@ export const useAuthControllerRegister = (
       AuthControllerRegisterVariables
     >,
     "mutationFn"
-  >,
+  >
 ) => {
-  const { fetcherOptions } = useNeurachatContext();
+  const { fetcherOptions } = useNeurachatContext()
   return reactQuery.useMutation<
     Schemas.NoResponseDataDto,
     AuthControllerRegisterError,
@@ -277,32 +277,32 @@ export const useAuthControllerRegister = (
   >({
     mutationFn: (variables: AuthControllerRegisterVariables) =>
       fetchAuthControllerRegister(deepMerge(fetcherOptions, variables)),
-    ...options,
-  });
-};
+    ...options
+  })
+}
 
 export type AuthControllerConfirmEmailPathParams = {
   /**
    * Token to confirm email
    */
-  token: string;
-};
+  token: string
+}
 
 export type AuthControllerConfirmEmailError = Fetcher.ErrorWrapper<{
-  status: 400;
-  payload: Schemas.ExceptionDto;
-}>;
+  status: 400
+  payload: Schemas.ExceptionDto
+}>
 
 export type AuthControllerConfirmEmailVariables = {
-  pathParams: AuthControllerConfirmEmailPathParams;
-} & NeurachatContext["fetcherOptions"];
+  pathParams: AuthControllerConfirmEmailPathParams
+} & NeurachatContext["fetcherOptions"]
 
 /**
  * Confirm user email using token
  */
 export const fetchAuthControllerConfirmEmail = (
   variables: AuthControllerConfirmEmailVariables,
-  signal?: AbortSignal,
+  signal?: AbortSignal
 ) =>
   neurachatFetch<
     Schemas.NoResponseDataDto,
@@ -315,50 +315,50 @@ export const fetchAuthControllerConfirmEmail = (
     url: "/auth/confirm-email/{token}",
     method: "get",
     ...variables,
-    signal,
-  });
+    signal
+  })
 
 /**
  * Confirm user email using token
  */
 export function authControllerConfirmEmailQuery(
-  variables: AuthControllerConfirmEmailVariables,
+  variables: AuthControllerConfirmEmailVariables
 ): {
-  queryKey: reactQuery.QueryKey;
-  queryFn: (options: QueryFnOptions) => Promise<Schemas.NoResponseDataDto>;
-};
+  queryKey: reactQuery.QueryKey
+  queryFn: (options: QueryFnOptions) => Promise<Schemas.NoResponseDataDto>
+}
 
 export function authControllerConfirmEmailQuery(
-  variables: AuthControllerConfirmEmailVariables | reactQuery.SkipToken,
+  variables: AuthControllerConfirmEmailVariables | reactQuery.SkipToken
 ): {
-  queryKey: reactQuery.QueryKey;
+  queryKey: reactQuery.QueryKey
   queryFn:
     | ((options: QueryFnOptions) => Promise<Schemas.NoResponseDataDto>)
-    | reactQuery.SkipToken;
-};
+    | reactQuery.SkipToken
+}
 
 export function authControllerConfirmEmailQuery(
-  variables: AuthControllerConfirmEmailVariables | reactQuery.SkipToken,
+  variables: AuthControllerConfirmEmailVariables | reactQuery.SkipToken
 ) {
   return {
     queryKey: queryKeyFn({
       path: "/auth/confirm-email/{token}",
       operationId: "authControllerConfirmEmail",
-      variables,
+      variables
     }),
     queryFn:
       variables === reactQuery.skipToken
         ? reactQuery.skipToken
         : ({ signal }: QueryFnOptions) =>
-            fetchAuthControllerConfirmEmail(variables, signal),
-  };
+            fetchAuthControllerConfirmEmail(variables, signal)
+  }
 }
 
 /**
  * Confirm user email using token
  */
 export const useSuspenseAuthControllerConfirmEmail = <
-  TData = Schemas.NoResponseDataDto,
+  TData = Schemas.NoResponseDataDto
 >(
   variables: AuthControllerConfirmEmailVariables,
   options?: Omit<
@@ -368,9 +368,9 @@ export const useSuspenseAuthControllerConfirmEmail = <
       TData
     >,
     "queryKey" | "queryFn" | "initialData"
-  >,
+  >
 ) => {
-  const { queryOptions, fetcherOptions } = useNeurachatContext(options);
+  const { queryOptions, fetcherOptions } = useNeurachatContext(options)
   return reactQuery.useSuspenseQuery<
     Schemas.NoResponseDataDto,
     AuthControllerConfirmEmailError,
@@ -378,15 +378,15 @@ export const useSuspenseAuthControllerConfirmEmail = <
   >({
     ...authControllerConfirmEmailQuery(deepMerge(fetcherOptions, variables)),
     ...options,
-    ...queryOptions,
-  });
-};
+    ...queryOptions
+  })
+}
 
 /**
  * Confirm user email using token
  */
 export const useAuthControllerConfirmEmail = <
-  TData = Schemas.NoResponseDataDto,
+  TData = Schemas.NoResponseDataDto
 >(
   variables: AuthControllerConfirmEmailVariables | reactQuery.SkipToken,
   options?: Omit<
@@ -396,9 +396,9 @@ export const useAuthControllerConfirmEmail = <
       TData
     >,
     "queryKey" | "queryFn" | "initialData"
-  >,
+  >
 ) => {
-  const { queryOptions, fetcherOptions } = useNeurachatContext(options);
+  const { queryOptions, fetcherOptions } = useNeurachatContext(options)
   return reactQuery.useQuery<
     Schemas.NoResponseDataDto,
     AuthControllerConfirmEmailError,
@@ -407,34 +407,34 @@ export const useAuthControllerConfirmEmail = <
     ...authControllerConfirmEmailQuery(
       variables === reactQuery.skipToken
         ? variables
-        : deepMerge(fetcherOptions, variables),
+        : deepMerge(fetcherOptions, variables)
     ),
     ...options,
-    ...queryOptions,
-  });
-};
+    ...queryOptions
+  })
+}
 
 export type AuthControllerLoginError = Fetcher.ErrorWrapper<
   | {
-      status: 400;
-      payload: Schemas.ExceptionDto;
+      status: 400
+      payload: Schemas.ExceptionDto
     }
   | {
-      status: 403;
-      payload: Schemas.ExceptionDto;
+      status: 403
+      payload: Schemas.ExceptionDto
     }
->;
+>
 
 export type AuthControllerLoginVariables = {
-  body: Schemas.LoginRequest;
-} & NeurachatContext["fetcherOptions"];
+  body: Schemas.LoginRequest
+} & NeurachatContext["fetcherOptions"]
 
 /**
  * Login user and return access and refresh tokens
  */
 export const fetchAuthControllerLogin = (
   variables: AuthControllerLoginVariables,
-  signal?: AbortSignal,
+  signal?: AbortSignal
 ) =>
   neurachatFetch<
     Schemas.LoginResponse,
@@ -443,7 +443,7 @@ export const fetchAuthControllerLogin = (
     {},
     {},
     {}
-  >({ url: "/auth/login", method: "post", ...variables, signal });
+  >({ url: "/auth/login", method: "post", ...variables, signal })
 
 /**
  * Login user and return access and refresh tokens
@@ -456,9 +456,9 @@ export const useAuthControllerLogin = (
       AuthControllerLoginVariables
     >,
     "mutationFn"
-  >,
+  >
 ) => {
-  const { fetcherOptions } = useNeurachatContext();
+  const { fetcherOptions } = useNeurachatContext()
   return reactQuery.useMutation<
     Schemas.LoginResponse,
     AuthControllerLoginError,
@@ -466,24 +466,24 @@ export const useAuthControllerLogin = (
   >({
     mutationFn: (variables: AuthControllerLoginVariables) =>
       fetchAuthControllerLogin(deepMerge(fetcherOptions, variables)),
-    ...options,
-  });
-};
+    ...options
+  })
+}
 
 export type AuthControllerRefreshTokenError = Fetcher.ErrorWrapper<{
-  status: 400;
-  payload: Schemas.ExceptionDto;
-}>;
+  status: 400
+  payload: Schemas.ExceptionDto
+}>
 
 export type AuthControllerRefreshTokenVariables =
-  NeurachatContext["fetcherOptions"];
+  NeurachatContext["fetcherOptions"]
 
 /**
  * Refresh access and refresh tokens using refresh token
  */
 export const fetchAuthControllerRefreshToken = (
   variables: AuthControllerRefreshTokenVariables,
-  signal?: AbortSignal,
+  signal?: AbortSignal
 ) =>
   neurachatFetch<
     Schemas.LoginResponse,
@@ -492,7 +492,7 @@ export const fetchAuthControllerRefreshToken = (
     {},
     {},
     {}
-  >({ url: "/auth/refresh-token", method: "post", ...variables, signal });
+  >({ url: "/auth/refresh-token", method: "post", ...variables, signal })
 
 /**
  * Refresh access and refresh tokens using refresh token
@@ -505,9 +505,9 @@ export const useAuthControllerRefreshToken = (
       AuthControllerRefreshTokenVariables
     >,
     "mutationFn"
-  >,
+  >
 ) => {
-  const { fetcherOptions } = useNeurachatContext();
+  const { fetcherOptions } = useNeurachatContext()
   return reactQuery.useMutation<
     Schemas.LoginResponse,
     AuthControllerRefreshTokenError,
@@ -515,25 +515,25 @@ export const useAuthControllerRefreshToken = (
   >({
     mutationFn: (variables: AuthControllerRefreshTokenVariables) =>
       fetchAuthControllerRefreshToken(deepMerge(fetcherOptions, variables)),
-    ...options,
-  });
-};
+    ...options
+  })
+}
 
 export type AuthControllerForgotPasswordError = Fetcher.ErrorWrapper<{
-  status: 400;
-  payload: Schemas.ExceptionDto;
-}>;
+  status: 400
+  payload: Schemas.ExceptionDto
+}>
 
 export type AuthControllerForgotPasswordVariables = {
-  body: Schemas.ForgotPasswordRequest;
-} & NeurachatContext["fetcherOptions"];
+  body: Schemas.ForgotPasswordRequest
+} & NeurachatContext["fetcherOptions"]
 
 /**
  * Send password reset link to user email
  */
 export const fetchAuthControllerForgotPassword = (
   variables: AuthControllerForgotPasswordVariables,
-  signal?: AbortSignal,
+  signal?: AbortSignal
 ) =>
   neurachatFetch<
     Schemas.NoResponseDataDto,
@@ -542,7 +542,7 @@ export const fetchAuthControllerForgotPassword = (
     {},
     {},
     {}
-  >({ url: "/auth/forgot-password", method: "post", ...variables, signal });
+  >({ url: "/auth/forgot-password", method: "post", ...variables, signal })
 
 /**
  * Send password reset link to user email
@@ -555,9 +555,9 @@ export const useAuthControllerForgotPassword = (
       AuthControllerForgotPasswordVariables
     >,
     "mutationFn"
-  >,
+  >
 ) => {
-  const { fetcherOptions } = useNeurachatContext();
+  const { fetcherOptions } = useNeurachatContext()
   return reactQuery.useMutation<
     Schemas.NoResponseDataDto,
     AuthControllerForgotPasswordError,
@@ -565,25 +565,25 @@ export const useAuthControllerForgotPassword = (
   >({
     mutationFn: (variables: AuthControllerForgotPasswordVariables) =>
       fetchAuthControllerForgotPassword(deepMerge(fetcherOptions, variables)),
-    ...options,
-  });
-};
+    ...options
+  })
+}
 
 export type AuthControllerResetPasswordError = Fetcher.ErrorWrapper<{
-  status: 400;
-  payload: Schemas.ExceptionDto;
-}>;
+  status: 400
+  payload: Schemas.ExceptionDto
+}>
 
 export type AuthControllerResetPasswordVariables = {
-  body: Schemas.ResetPasswordRequest;
-} & NeurachatContext["fetcherOptions"];
+  body: Schemas.ResetPasswordRequest
+} & NeurachatContext["fetcherOptions"]
 
 /**
  * Reset user password using token
  */
 export const fetchAuthControllerResetPassword = (
   variables: AuthControllerResetPasswordVariables,
-  signal?: AbortSignal,
+  signal?: AbortSignal
 ) =>
   neurachatFetch<
     Schemas.NoResponseDataDto,
@@ -592,7 +592,7 @@ export const fetchAuthControllerResetPassword = (
     {},
     {},
     {}
-  >({ url: "/auth/reset-password", method: "post", ...variables, signal });
+  >({ url: "/auth/reset-password", method: "post", ...variables, signal })
 
 /**
  * Reset user password using token
@@ -605,9 +605,9 @@ export const useAuthControllerResetPassword = (
       AuthControllerResetPasswordVariables
     >,
     "mutationFn"
-  >,
+  >
 ) => {
-  const { fetcherOptions } = useNeurachatContext();
+  const { fetcherOptions } = useNeurachatContext()
   return reactQuery.useMutation<
     Schemas.NoResponseDataDto,
     AuthControllerResetPasswordError,
@@ -615,24 +615,24 @@ export const useAuthControllerResetPassword = (
   >({
     mutationFn: (variables: AuthControllerResetPasswordVariables) =>
       fetchAuthControllerResetPassword(deepMerge(fetcherOptions, variables)),
-    ...options,
-  });
-};
+    ...options
+  })
+}
 
-export type AuthControllerLogoutError = Fetcher.ErrorWrapper<undefined>;
+export type AuthControllerLogoutError = Fetcher.ErrorWrapper<undefined>
 
-export type AuthControllerLogoutVariables = NeurachatContext["fetcherOptions"];
+export type AuthControllerLogoutVariables = NeurachatContext["fetcherOptions"]
 
 export const fetchAuthControllerLogout = (
   variables: AuthControllerLogoutVariables,
-  signal?: AbortSignal,
+  signal?: AbortSignal
 ) =>
   neurachatFetch<undefined, AuthControllerLogoutError, undefined, {}, {}, {}>({
     url: "/auth/logout",
     method: "post",
     ...variables,
-    signal,
-  });
+    signal
+  })
 
 export const useAuthControllerLogout = (
   options?: Omit<
@@ -642,9 +642,9 @@ export const useAuthControllerLogout = (
       AuthControllerLogoutVariables
     >,
     "mutationFn"
-  >,
+  >
 ) => {
-  const { fetcherOptions } = useNeurachatContext();
+  const { fetcherOptions } = useNeurachatContext()
   return reactQuery.useMutation<
     undefined,
     AuthControllerLogoutError,
@@ -652,29 +652,29 @@ export const useAuthControllerLogout = (
   >({
     mutationFn: (variables: AuthControllerLogoutVariables) =>
       fetchAuthControllerLogout(deepMerge(fetcherOptions, variables)),
-    ...options,
-  });
-};
+    ...options
+  })
+}
 
 export type UtilsControllerCheckUsernameUniquenessPathParams = {
-  username: string;
-};
+  username: string
+}
 
 export type UtilsControllerCheckUsernameUniquenessError = Fetcher.ErrorWrapper<{
-  status: 502;
-  payload: Schemas.ExceptionDto;
-}>;
+  status: 502
+  payload: Schemas.ExceptionDto
+}>
 
 export type UtilsControllerCheckUsernameUniquenessVariables = {
-  pathParams: UtilsControllerCheckUsernameUniquenessPathParams;
-} & NeurachatContext["fetcherOptions"];
+  pathParams: UtilsControllerCheckUsernameUniquenessPathParams
+} & NeurachatContext["fetcherOptions"]
 
 /**
  * Check if the username is available
  */
 export const fetchUtilsControllerCheckUsernameUniqueness = (
   variables: UtilsControllerCheckUsernameUniquenessVariables,
-  signal?: AbortSignal,
+  signal?: AbortSignal
 ) =>
   neurachatFetch<
     Schemas.NoResponseDataDto,
@@ -683,53 +683,53 @@ export const fetchUtilsControllerCheckUsernameUniqueness = (
     {},
     {},
     UtilsControllerCheckUsernameUniquenessPathParams
-  >({ url: "/utils/username/{username}", method: "get", ...variables, signal });
+  >({ url: "/utils/username/{username}", method: "get", ...variables, signal })
 
 /**
  * Check if the username is available
  */
 export function utilsControllerCheckUsernameUniquenessQuery(
-  variables: UtilsControllerCheckUsernameUniquenessVariables,
+  variables: UtilsControllerCheckUsernameUniquenessVariables
 ): {
-  queryKey: reactQuery.QueryKey;
-  queryFn: (options: QueryFnOptions) => Promise<Schemas.NoResponseDataDto>;
-};
+  queryKey: reactQuery.QueryKey
+  queryFn: (options: QueryFnOptions) => Promise<Schemas.NoResponseDataDto>
+}
 
 export function utilsControllerCheckUsernameUniquenessQuery(
   variables:
     | UtilsControllerCheckUsernameUniquenessVariables
-    | reactQuery.SkipToken,
+    | reactQuery.SkipToken
 ): {
-  queryKey: reactQuery.QueryKey;
+  queryKey: reactQuery.QueryKey
   queryFn:
     | ((options: QueryFnOptions) => Promise<Schemas.NoResponseDataDto>)
-    | reactQuery.SkipToken;
-};
+    | reactQuery.SkipToken
+}
 
 export function utilsControllerCheckUsernameUniquenessQuery(
   variables:
     | UtilsControllerCheckUsernameUniquenessVariables
-    | reactQuery.SkipToken,
+    | reactQuery.SkipToken
 ) {
   return {
     queryKey: queryKeyFn({
       path: "/utils/username/{username}",
       operationId: "utilsControllerCheckUsernameUniqueness",
-      variables,
+      variables
     }),
     queryFn:
       variables === reactQuery.skipToken
         ? reactQuery.skipToken
         : ({ signal }: QueryFnOptions) =>
-            fetchUtilsControllerCheckUsernameUniqueness(variables, signal),
-  };
+            fetchUtilsControllerCheckUsernameUniqueness(variables, signal)
+  }
 }
 
 /**
  * Check if the username is available
  */
 export const useSuspenseUtilsControllerCheckUsernameUniqueness = <
-  TData = Schemas.NoResponseDataDto,
+  TData = Schemas.NoResponseDataDto
 >(
   variables: UtilsControllerCheckUsernameUniquenessVariables,
   options?: Omit<
@@ -739,27 +739,27 @@ export const useSuspenseUtilsControllerCheckUsernameUniqueness = <
       TData
     >,
     "queryKey" | "queryFn" | "initialData"
-  >,
+  >
 ) => {
-  const { queryOptions, fetcherOptions } = useNeurachatContext(options);
+  const { queryOptions, fetcherOptions } = useNeurachatContext(options)
   return reactQuery.useSuspenseQuery<
     Schemas.NoResponseDataDto,
     UtilsControllerCheckUsernameUniquenessError,
     TData
   >({
     ...utilsControllerCheckUsernameUniquenessQuery(
-      deepMerge(fetcherOptions, variables),
+      deepMerge(fetcherOptions, variables)
     ),
     ...options,
-    ...queryOptions,
-  });
-};
+    ...queryOptions
+  })
+}
 
 /**
  * Check if the username is available
  */
 export const useUtilsControllerCheckUsernameUniqueness = <
-  TData = Schemas.NoResponseDataDto,
+  TData = Schemas.NoResponseDataDto
 >(
   variables:
     | UtilsControllerCheckUsernameUniquenessVariables
@@ -771,9 +771,9 @@ export const useUtilsControllerCheckUsernameUniqueness = <
       TData
     >,
     "queryKey" | "queryFn" | "initialData"
-  >,
+  >
 ) => {
-  const { queryOptions, fetcherOptions } = useNeurachatContext(options);
+  const { queryOptions, fetcherOptions } = useNeurachatContext(options)
   return reactQuery.useQuery<
     Schemas.NoResponseDataDto,
     UtilsControllerCheckUsernameUniquenessError,
@@ -782,24 +782,24 @@ export const useUtilsControllerCheckUsernameUniqueness = <
     ...utilsControllerCheckUsernameUniquenessQuery(
       variables === reactQuery.skipToken
         ? variables
-        : deepMerge(fetcherOptions, variables),
+        : deepMerge(fetcherOptions, variables)
     ),
     ...options,
-    ...queryOptions,
-  });
-};
+    ...queryOptions
+  })
+}
 
-export type UserControllerGetCurrentUserError = Fetcher.ErrorWrapper<undefined>;
+export type UserControllerGetCurrentUserError = Fetcher.ErrorWrapper<undefined>
 
 export type UserControllerGetCurrentUserVariables =
-  NeurachatContext["fetcherOptions"];
+  NeurachatContext["fetcherOptions"]
 
 /**
  * Get current user profile
  */
 export const fetchUserControllerGetCurrentUser = (
   variables: UserControllerGetCurrentUserVariables,
-  signal?: AbortSignal,
+  signal?: AbortSignal
 ) =>
   neurachatFetch<
     Schemas.GetUserResponse,
@@ -808,49 +808,49 @@ export const fetchUserControllerGetCurrentUser = (
     {},
     {},
     {}
-  >({ url: "/user", method: "get", ...variables, signal });
+  >({ url: "/user", method: "get", ...variables, signal })
 
 /**
  * Get current user profile
  */
 export function userControllerGetCurrentUserQuery(
-  variables: UserControllerGetCurrentUserVariables,
+  variables: UserControllerGetCurrentUserVariables
 ): {
-  queryKey: reactQuery.QueryKey;
-  queryFn: (options: QueryFnOptions) => Promise<Schemas.GetUserResponse>;
-};
+  queryKey: reactQuery.QueryKey
+  queryFn: (options: QueryFnOptions) => Promise<Schemas.GetUserResponse>
+}
 
 export function userControllerGetCurrentUserQuery(
-  variables: UserControllerGetCurrentUserVariables | reactQuery.SkipToken,
+  variables: UserControllerGetCurrentUserVariables | reactQuery.SkipToken
 ): {
-  queryKey: reactQuery.QueryKey;
+  queryKey: reactQuery.QueryKey
   queryFn:
     | ((options: QueryFnOptions) => Promise<Schemas.GetUserResponse>)
-    | reactQuery.SkipToken;
-};
+    | reactQuery.SkipToken
+}
 
 export function userControllerGetCurrentUserQuery(
-  variables: UserControllerGetCurrentUserVariables | reactQuery.SkipToken,
+  variables: UserControllerGetCurrentUserVariables | reactQuery.SkipToken
 ) {
   return {
     queryKey: queryKeyFn({
       path: "/user",
       operationId: "userControllerGetCurrentUser",
-      variables,
+      variables
     }),
     queryFn:
       variables === reactQuery.skipToken
         ? reactQuery.skipToken
         : ({ signal }: QueryFnOptions) =>
-            fetchUserControllerGetCurrentUser(variables, signal),
-  };
+            fetchUserControllerGetCurrentUser(variables, signal)
+  }
 }
 
 /**
  * Get current user profile
  */
 export const useSuspenseUserControllerGetCurrentUser = <
-  TData = Schemas.GetUserResponse,
+  TData = Schemas.GetUserResponse
 >(
   variables: UserControllerGetCurrentUserVariables,
   options?: Omit<
@@ -860,9 +860,9 @@ export const useSuspenseUserControllerGetCurrentUser = <
       TData
     >,
     "queryKey" | "queryFn" | "initialData"
-  >,
+  >
 ) => {
-  const { queryOptions, fetcherOptions } = useNeurachatContext(options);
+  const { queryOptions, fetcherOptions } = useNeurachatContext(options)
   return reactQuery.useSuspenseQuery<
     Schemas.GetUserResponse,
     UserControllerGetCurrentUserError,
@@ -870,15 +870,15 @@ export const useSuspenseUserControllerGetCurrentUser = <
   >({
     ...userControllerGetCurrentUserQuery(deepMerge(fetcherOptions, variables)),
     ...options,
-    ...queryOptions,
-  });
-};
+    ...queryOptions
+  })
+}
 
 /**
  * Get current user profile
  */
 export const useUserControllerGetCurrentUser = <
-  TData = Schemas.GetUserResponse,
+  TData = Schemas.GetUserResponse
 >(
   variables: UserControllerGetCurrentUserVariables | reactQuery.SkipToken,
   options?: Omit<
@@ -888,9 +888,9 @@ export const useUserControllerGetCurrentUser = <
       TData
     >,
     "queryKey" | "queryFn" | "initialData"
-  >,
+  >
 ) => {
-  const { queryOptions, fetcherOptions } = useNeurachatContext(options);
+  const { queryOptions, fetcherOptions } = useNeurachatContext(options)
   return reactQuery.useQuery<
     Schemas.GetUserResponse,
     UserControllerGetCurrentUserError,
@@ -899,23 +899,23 @@ export const useUserControllerGetCurrentUser = <
     ...userControllerGetCurrentUserQuery(
       variables === reactQuery.skipToken
         ? variables
-        : deepMerge(fetcherOptions, variables),
+        : deepMerge(fetcherOptions, variables)
     ),
     ...options,
-    ...queryOptions,
-  });
-};
+    ...queryOptions
+  })
+}
 
 export type UserControllerUpdateUserProfileError =
-  Fetcher.ErrorWrapper<undefined>;
+  Fetcher.ErrorWrapper<undefined>
 
 export type UserControllerUpdateUserProfileVariables = {
-  body?: Schemas.UpdateUserRequest;
-} & NeurachatContext["fetcherOptions"];
+  body?: Schemas.UpdateUserRequest
+} & NeurachatContext["fetcherOptions"]
 
 export const fetchUserControllerUpdateUserProfile = (
   variables: UserControllerUpdateUserProfileVariables,
-  signal?: AbortSignal,
+  signal?: AbortSignal
 ) =>
   neurachatFetch<
     undefined,
@@ -924,7 +924,7 @@ export const fetchUserControllerUpdateUserProfile = (
     {},
     {},
     {}
-  >({ url: "/user", method: "put", ...variables, signal });
+  >({ url: "/user", method: "put", ...variables, signal })
 
 export const useUserControllerUpdateUserProfile = (
   options?: Omit<
@@ -934,9 +934,9 @@ export const useUserControllerUpdateUserProfile = (
       UserControllerUpdateUserProfileVariables
     >,
     "mutationFn"
-  >,
+  >
 ) => {
-  const { fetcherOptions } = useNeurachatContext();
+  const { fetcherOptions } = useNeurachatContext()
   return reactQuery.useMutation<
     undefined,
     UserControllerUpdateUserProfileError,
@@ -944,21 +944,21 @@ export const useUserControllerUpdateUserProfile = (
   >({
     mutationFn: (variables: UserControllerUpdateUserProfileVariables) =>
       fetchUserControllerUpdateUserProfile(
-        deepMerge(fetcherOptions, variables),
+        deepMerge(fetcherOptions, variables)
       ),
-    ...options,
-  });
-};
+    ...options
+  })
+}
 
 export type UserControllerChangeUserPasswordError =
-  Fetcher.ErrorWrapper<undefined>;
+  Fetcher.ErrorWrapper<undefined>
 
 export type UserControllerChangeUserPasswordVariables =
-  NeurachatContext["fetcherOptions"];
+  NeurachatContext["fetcherOptions"]
 
 export const fetchUserControllerChangeUserPassword = (
   variables: UserControllerChangeUserPasswordVariables,
-  signal?: AbortSignal,
+  signal?: AbortSignal
 ) =>
   neurachatFetch<
     undefined,
@@ -967,7 +967,7 @@ export const fetchUserControllerChangeUserPassword = (
     {},
     {},
     {}
-  >({ url: "/user/password", method: "patch", ...variables, signal });
+  >({ url: "/user/password", method: "patch", ...variables, signal })
 
 export const useUserControllerChangeUserPassword = (
   options?: Omit<
@@ -977,9 +977,9 @@ export const useUserControllerChangeUserPassword = (
       UserControllerChangeUserPasswordVariables
     >,
     "mutationFn"
-  >,
+  >
 ) => {
-  const { fetcherOptions } = useNeurachatContext();
+  const { fetcherOptions } = useNeurachatContext()
   return reactQuery.useMutation<
     undefined,
     UserControllerChangeUserPasswordError,
@@ -987,37 +987,37 @@ export const useUserControllerChangeUserPassword = (
   >({
     mutationFn: (variables: UserControllerChangeUserPasswordVariables) =>
       fetchUserControllerChangeUserPassword(
-        deepMerge(fetcherOptions, variables),
+        deepMerge(fetcherOptions, variables)
       ),
-    ...options,
-  });
-};
+    ...options
+  })
+}
 
 export type QueryOperation =
   | {
-      path: "/health-check";
-      operationId: "appControllerGetHealthCheck";
-      variables: AppControllerGetHealthCheckVariables | reactQuery.SkipToken;
+      path: "/health-check"
+      operationId: "appControllerGetHealthCheck"
+      variables: AppControllerGetHealthCheckVariables | reactQuery.SkipToken
     }
   | {
-      path: "/";
-      operationId: "appControllerGetRoot";
-      variables: AppControllerGetRootVariables | reactQuery.SkipToken;
+      path: "/"
+      operationId: "appControllerGetRoot"
+      variables: AppControllerGetRootVariables | reactQuery.SkipToken
     }
   | {
-      path: "/auth/confirm-email/{token}";
-      operationId: "authControllerConfirmEmail";
-      variables: AuthControllerConfirmEmailVariables | reactQuery.SkipToken;
+      path: "/auth/confirm-email/{token}"
+      operationId: "authControllerConfirmEmail"
+      variables: AuthControllerConfirmEmailVariables | reactQuery.SkipToken
     }
   | {
-      path: "/utils/username/{username}";
-      operationId: "utilsControllerCheckUsernameUniqueness";
+      path: "/utils/username/{username}"
+      operationId: "utilsControllerCheckUsernameUniqueness"
       variables:
         | UtilsControllerCheckUsernameUniquenessVariables
-        | reactQuery.SkipToken;
+        | reactQuery.SkipToken
     }
   | {
-      path: "/user";
-      operationId: "userControllerGetCurrentUser";
-      variables: UserControllerGetCurrentUserVariables | reactQuery.SkipToken;
-    };
+      path: "/user"
+      operationId: "userControllerGetCurrentUser"
+      variables: UserControllerGetCurrentUserVariables | reactQuery.SkipToken
+    }

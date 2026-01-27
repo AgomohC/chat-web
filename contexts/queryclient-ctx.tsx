@@ -1,12 +1,12 @@
-"use client";
-import { EnvVars } from "@/lib/constants";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { ReactNode, useState } from "react";
+"use client"
+import { EnvVars } from "@/lib/constants"
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
+import { ReactNode, useState } from "react"
 
 export const ReactQueryClientProvider = ({
-  children,
+  children
 }: {
-  children: ReactNode;
+  children: ReactNode
 }) => {
   const [queryClient] = useState(
     () =>
@@ -18,12 +18,12 @@ export const ReactQueryClientProvider = ({
             staleTime: 60 * 1000,
             gcTime: 1000 * 60 * 60 * 4,
             refetchOnReconnect: true,
-            refetchOnWindowFocus: EnvVars.environment !== "development",
-          },
-        },
-      }),
-  );
+            refetchOnWindowFocus: EnvVars.environment !== "development"
+          }
+        }
+      })
+  )
   return (
     <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-  );
-};
+  )
+}
