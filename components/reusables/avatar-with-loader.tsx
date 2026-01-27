@@ -1,6 +1,6 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { cn } from "@/lib/utils"
-import { Fragment, useState } from "react"
+import { Activity, Fragment, useState } from "react"
 import { Skeleton } from "../ui/skeleton"
 
 export const AvatarWithLoader = ({
@@ -44,14 +44,14 @@ export const AvatarWithLoader = ({
         </AvatarFallback>
       </Avatar>
 
-      {isLoading ? (
+      <Activity mode={isLoading ? "visible" : "hidden"}>
         <Skeleton
           className={cn(
             `min-h-8 min-w-8 rounded-lg z-50 bg-white`,
             classnames?.skeleton
           )}
         />
-      ) : null}
+      </Activity>
     </Fragment>
   )
 }

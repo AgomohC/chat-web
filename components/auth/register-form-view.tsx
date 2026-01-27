@@ -10,7 +10,7 @@ import {
 import PasswordInput from "../reusables/password-input"
 import { Input } from "../ui/input"
 import { useUtilsControllerCheckUsernameUniqueness } from "@/core/api-client/neurachatComponents"
-import { useEffect } from "react"
+import { Activity, useEffect } from "react"
 import { getApiErrorMessage } from "@/lib/get-error-message"
 import { Spinner } from "../ui/spinner"
 import { useDebounce } from "@/hooks/use-debounce"
@@ -65,10 +65,9 @@ export const RegisterFormView = () => {
           <FormItem className="flex flex-col gap-1">
             <div className="flex justify-between w-full items-center">
               <FormLabel className="leading-6">Username</FormLabel>
-
-              {usernameUnique.isLoading ? (
+              <Activity mode={usernameUnique.isLoading ? "visible" : "hidden"}>
                 <Spinner className="text-primary text-xs" />
-              ) : null}
+              </Activity>
             </div>
             <FormControl>
               <Input {...field} placeholder="Enter your username" />

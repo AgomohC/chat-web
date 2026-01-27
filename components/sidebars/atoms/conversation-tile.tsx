@@ -9,6 +9,7 @@ import { useChecklist } from "@/hooks/use-checklist"
 import { useSearchParamsUtils } from "@/hooks/use-search-param-utils"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
+import { Activity } from "react"
 
 export const ConversationTile = (props: { conversation: Conversation }) => {
   const { isSelected } = useChecklist()
@@ -61,24 +62,26 @@ export const ConversationTile = (props: { conversation: Conversation }) => {
         <AvatarFallback className="rounded-lg" delayMs={400}>
           {avatarFallback}
         </AvatarFallback>
-        {isOnline ? (
-          <span className="absolute bottom-0 right-0 block size-4 rounded-full bg-primary" />
-        ) : null}
 
-        {isSelected(id) ? (
+        <Activity mode={isOnline ? "visible" : "hidden"}>
+          <span className="absolute bottom-0 right-0 block size-4 rounded-full bg-primary" />
+        </Activity>
+
+        <Activity mode={isSelected(id) ? "visible" : "hidden"}>
           <div className="absolute bottom-0 bg-primary left-0 rounded-full size-fit ">
             <CircleCheck className="size-4 text-background" />
           </div>
-        ) : null}
+        </Activity>
       </Avatar>
 
       <div className="flex-1 min-w-0 space-y-2">
         <div className="flex justify-between items-center w-full max-w-full gap-2">
           <div className="inline-flex items-center gap-0.5 min-w-0">
             <h2 className="text-base truncate">{name}</h2>
-            {isMuted ? (
+
+            <Activity mode={isMuted ? "visible" : "hidden"}>
               <VolumeOff size={12} className="mt-1 shrink-0 text-destructive" />
-            ) : null}
+            </Activity>
           </div>
           <TimeDisplay dateTime={latestMessageTimestamp} />
         </div>

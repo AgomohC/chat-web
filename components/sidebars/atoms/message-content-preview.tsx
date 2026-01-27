@@ -2,6 +2,7 @@ import { Media, Message } from "@/lib/models"
 import { safeString } from "@/lib/utils"
 import { Paperclip, File, Music2, Video } from "lucide-react"
 import Image from "next/image"
+import { Activity } from "react"
 
 export const MessageContentPreview = (props: {
   message: Message
@@ -11,7 +12,9 @@ export const MessageContentPreview = (props: {
 
   return (
     <div className="text-sm text-gray-500 flex gap-0.5 items-center flex-1 min-w-0">
-      {isGroup ? <p className="font-semibold ">You:</p> : null}
+      <Activity mode={isGroup ? "visible" : "hidden"}>
+        <p className="font-semibold ">You:</p>
+      </Activity>
       <MediaPreview media={message.media} />
       <p className="truncate flex-1">{message.text}</p>
     </div>
