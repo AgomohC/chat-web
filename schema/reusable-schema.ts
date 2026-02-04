@@ -6,7 +6,7 @@ export const passwordSchema = z
   })
   .trim()
   .min(8, { message: "Password must have at least 8 characters" })
-  .regex(/[$&+,:;=?@#|'<>.^*()%!-]/, {
+  .regex(/[$&+,:;=?@#|'<>.^*()%!-_]/, {
     message: "Password must contain one special character"
   })
   .regex(/[A-Z]/, {
