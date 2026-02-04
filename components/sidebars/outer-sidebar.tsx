@@ -54,12 +54,7 @@ const navItem = [
 export const OuterSideBar = () => {
   const pathname = usePathname()
 
-  const { createQueryString } = useSearchParamsUtils()
-
-  const generateLinkFromSearchParam = (searchParam: URLSearchParams) => {
-    const [key, value] = searchParam.toString().split("=")
-    return pathname + "?" + createQueryString(key, value)
-  }
+  const { generateLinkFromSearchParam } = useSearchParamsUtils()
 
   return (
     <Sidebar
