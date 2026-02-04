@@ -1437,46 +1437,56 @@ export const folders: Folder[] = [
   {
     id: 1,
     name: "All",
-    conversationsWithUnreadMessagesCount: 10000
+    conversationsWithUnreadMessagesCount: 10000,
+
+    slug: "default"
   },
   {
     id: 2,
     name: "Unread",
-    conversationsWithUnreadMessagesCount: 2
+    conversationsWithUnreadMessagesCount: 2,
+    slug: "unread"
   },
   {
     id: 3,
     name: "Work",
-    conversationsWithUnreadMessagesCount: 1
+    conversationsWithUnreadMessagesCount: 1,
+    slug: "work"
   },
   {
     id: 4,
     name: "Personal",
-    conversationsWithUnreadMessagesCount: 1
+    conversationsWithUnreadMessagesCount: 1,
+    slug: "personal"
   },
   {
     id: 5,
     name: "Other",
-    conversationsWithUnreadMessagesCount: 0
+    conversationsWithUnreadMessagesCount: 0,
+    slug: "other"
   },
   {
     id: 6,
     name: "Group",
-    conversationsWithUnreadMessagesCount: 120000404
+    conversationsWithUnreadMessagesCount: 120000404,
+    slug: "group"
   },
   {
     id: 7,
     name: "Pinned",
-    conversationsWithUnreadMessagesCount: 999
+    conversationsWithUnreadMessagesCount: 999,
+    slug: "pinned"
   },
   {
     id: 8,
     name: "Muted",
-    conversationsWithUnreadMessagesCount: 0
+    conversationsWithUnreadMessagesCount: 0,
+    slug: "muted"
   },
   {
     id: 9,
     name: "Archived",
-    conversationsWithUnreadMessagesCount: 123
+    conversationsWithUnreadMessagesCount: 123,
+    slug: "archived"
   }
 ]
