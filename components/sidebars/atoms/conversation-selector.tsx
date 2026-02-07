@@ -14,6 +14,7 @@ import {
   AlarmClock,
   ArchiveX,
   CircleCheck,
+  CircleX,
   DoorOpen,
   Flag,
   Folder,
@@ -143,7 +144,7 @@ export const ConversationMenu = (props: { conversation: Conversation }) => {
             }}
             aria-label="Unselect conversation"
           >
-            <CircleCheck />
+            <CircleX />
             Unselect
           </ContextMenuItem>
         </>
