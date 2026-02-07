@@ -41,22 +41,22 @@ export const ConversationSelector = (props: { conversation: Conversation }) => {
 }
 
 export const ConversationMenu = (props: { conversation: Conversation }) => {
-  const { select, isSelected } = useChecklist()
+  const { select, isSelected, deselect } = useChecklist()
 
   return (
     <ContextMenuContent className="w-52">
-      <ContextMenuItem>
+      <ContextMenuItem aria-label="archive conversation">
         <ArchiveX />
         Archive
       </ContextMenuItem>
 
       {props.conversation.isPinned === true ? (
-        <ContextMenuItem>
+        <ContextMenuItem aria-label="unpin conversation">
           <PinOff />
           Unpin
         </ContextMenuItem>
       ) : (
-        <ContextMenuItem>
+        <ContextMenuItem aria-label="pin conversation">
           <Pin />
           Pin
         </ContextMenuItem>
@@ -70,33 +70,35 @@ export const ConversationMenu = (props: { conversation: Conversation }) => {
           </div>
         </ContextMenuSubTrigger>
         <ContextMenuSubContent className="w-44">
-          <ContextMenuItem>
+          <ContextMenuItem aria-label="add conversation to personal folder">
             <User />
             Personal
           </ContextMenuItem>
-          <ContextMenuItem>
+          <ContextMenuItem aria-label="add conversation to work folder">
             <Folder />
             Work
           </ContextMenuItem>
 
           <ContextMenuSeparator />
-          <ContextMenuItem>Create Folder</ContextMenuItem>
+          <ContextMenuItem aria-label="create new folder">
+            Create Folder
+          </ContextMenuItem>
         </ContextMenuSubContent>
       </ContextMenuSub>
 
       <ContextMenuSub>
         <ContextMenuSubTrigger>
-          <div className="flex gap-2">
+          <ContextMenuItem aria-label="mute conversation">
             <MicOff />
             Mute
-          </div>
+          </ContextMenuItem>
         </ContextMenuSubTrigger>
         <ContextMenuSubContent className="w-44">
-          <ContextMenuItem>
+          <ContextMenuItem aria-label="mute conversation for a period of time">
             <AlarmClock />
             Mute For...
           </ContextMenuItem>
-          <ContextMenuItem>
+          <ContextMenuItem aria-label="unmute conversation">
             <Mic />
             Unmute
           </ContextMenuItem>
@@ -104,34 +106,48 @@ export const ConversationMenu = (props: { conversation: Conversation }) => {
       </ContextMenuSub>
 
       {props.conversation.unreadMessageCount > 0 ? (
-        <ContextMenuItem>
+        <ContextMenuItem aria-label="mark conversation as read">
           <MessageCircle />
           Mark as read
         </ContextMenuItem>
       ) : (
-        <ContextMenuItem>
+        <ContextMenuItem aria-label="mark conversation as unread">
           <MessageNotificationCircle />
           Mark as unread
         </ContextMenuItem>
       )}
       <ContextMenuSeparator />
-      <ContextMenuItem variant="destructive">
+      <ContextMenuItem variant="destructive" aria-label="report conversation">
         <Flag />
         Report
       </ContextMenuItem>
       {props.conversation.type === "group" ? (
-        <ContextMenuItem variant="destructive">
+        <ContextMenuItem variant="destructive" aria-label="leave group">
           <DoorOpen />
           Leave group
         </ContextMenuItem>
       ) : (
-        <ContextMenuItem variant="destructive">
+        <ContextMenuItem variant="destructive" aria-label="delete conversation">
           <Trash2 />
           Delete
         </ContextMenuItem>
       )}
 
-      {isSelected(props.conversation.id) ? null : (
+      {isSelected(props.conversation.id) ? (
+        <>
+          <ContextMenuSeparator />
+
+          <ContextMenuItem
+            onClick={() => {
+              deselect(props.conversation.id)
+            }}
+            aria-label="Unselect conversation"
+          >
+            <CircleCheck />
+            Unselect
+          </ContextMenuItem>
+        </>
+      ) : (
         <>
           <ContextMenuSeparator />
 
@@ -139,6 +155,7 @@ export const ConversationMenu = (props: { conversation: Conversation }) => {
             onClick={() => {
               select(props.conversation.id)
             }}
+            aria-label="select conversation"
           >
             <CircleCheck />
             Select

@@ -10,6 +10,7 @@ import { useSearchParamsUtils } from "@/hooks/use-search-param-utils"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { Activity } from "react"
+import { parseAsInteger, useQueryState } from "nuqs"
 
 export const ConversationTile = (props: { conversation: Conversation }) => {
   const { isSelected } = useChecklist()
@@ -27,21 +28,26 @@ export const ConversationTile = (props: { conversation: Conversation }) => {
   const latestMessage = messages[0]
 
   const latestMessageTimestamp = latestMessage ? latestMessage.timestamp : null
-  const { createQueryString, getSearchParam } = useSearchParamsUtils()
   const avatarFallback = generateInitials(name)
 
   const isOnline = id % 2 == 0
-  const isActive = getSearchParam("conversationId") == id.toString()
-
   const pathname = usePathname()
-
+  const { createQueryString } = useSearchParamsUtils()
   const queryString = createQueryString("conversationId", id.toString())
-
   const conversationUrl = pathname + "?" + queryString
+  const [activeConversationId, setActiveConversationId] = useQueryState(
+    "conversationId",
+    parseAsInteger.withDefault(0).withOptions({ shallow: false })
+  )
+  const isActive = activeConversationId == id
 
   return (
     <Link
       href={conversationUrl}
+      onClick={(e) => {
+        e.preventDefault()
+        setActiveConversationId(id)
+      }}
       className={cn(
         "flex w-full h-18 p-2 items-center gap-1 cursor-pointer hover:bg-accent rounded-lg relative",
         {
