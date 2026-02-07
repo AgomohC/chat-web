@@ -28,6 +28,7 @@ export default function PasswordInput({ ...props }: PasswordInputProps) {
           size="sm"
           className="absolute right-0 top-0 h-full px-3 hover:bg-transparent"
           onClick={togglePasswordVisibility}
+          aria-label={showPassword ? "Hide password" : "Show password"}
         >
           {showPassword ? (
             <EyeOff className="w-4 h-4 text-gray-500" />
