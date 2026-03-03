@@ -3,13 +3,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { ReactNode } from "react"
 
-export default function AuthLayout({
-  children
-}: {
-  children: ReactNode
-  title: string
-  subtitle?: string
-}) {
+export default function AuthLayout({ children }: { children: ReactNode }) {
   return (
     <div className="w-full flex flex-col justify-center items-center p-4 min-h-dvh scroll-smooth gap-8">
       <Link href={routes.auth.login}>
